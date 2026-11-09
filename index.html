@@ -1,19 +1,19 @@
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;UTF-8&quot; /&gt;
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
-  &lt;title&gt;VOCAL LOCAL — Visual &amp;amp; Voice Commerce for Everyone&lt;/title&gt;
-  &lt;script src=&quot;https://cdn.tailwindcss.com/3.4.17&quot;&gt;&lt;/script&gt;
-  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap&quot; rel=&quot;stylesheet&quot; /&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; /&gt;
-&lt;/head&gt;
-&lt;body class=&quot;min-h-screen pb-28&quot;&gt;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VOCAL LOCAL — Visual &amp; Voice Commerce for Everyone</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="min-h-screen pb-28">
 
-  &lt;!-- TOP HEADER: App Logo (Mic Symbol), Language Selector, Audio Helper, Role Switcher, Wallet &amp; Statement --&gt;
-  &lt;header class=&quot;sticky top-0 z-40 bg-gradient-to-r from-indigo-900 via-indigo-800 to-emerald-900 text-white shadow-xl border-b-4 border-amber-400&quot;&gt;
-    &lt;div class=&quot;max-w-7xl mx-auto px-3 sm:px-6 py-3&quot;&gt;
-      &lt;div class=&quot;flex flex-wrap items-center justify-between gap-3&quot;&gt;
+  <!-- TOP HEADER: App Logo (Mic Symbol), Language Selector, Audio Helper, Role Switcher, Wallet & Statement -->
+  <header class="sticky top-0 z-40 bg-gradient-to-r from-indigo-900 via-indigo-800 to-emerald-900 text-white shadow-xl border-b-4 border-amber-400">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-3">
+      <div class="flex flex-wrap items-center justify-between gap-3">
         
         <!-- Brand Logo: Mic Symbol + VOCAL LOCAL -->
         <div class="flex items-center gap-3">
@@ -34,7 +34,7 @@
               <span class="bg-amber-400 text-indigo-950 text-xs font-extrabold px-2 py-0.5 rounded-full">🎙️ AI VOICE</span>
             </div>
             <p id="headerSubtitle" class="text-xs sm:text-sm text-amber-200 font-semibold">
-              Speak &amp; Tap Pictures • Easy for Everyone
+              Speak & Tap Pictures • Easy for Everyone
             </p>
           </div>
         </div>
@@ -134,10 +134,10 @@
         </button>
       </div>
     </div>
-  &lt;/header&gt;
+  </header>
 
-  &lt;!-- MAIN CONTAINER --&gt;
-  &lt;main class=&quot;max-w-7xl mx-auto px-3 sm:px-6 pt-5 space-y-6&quot;&gt;
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-3 sm:px-6 pt-5 space-y-6">
 
     <!-- ROLE WALLET & PAYOUT QUICK BANNER (Always visible for current role with speaker button) -->
     <section class="bg-white rounded-3xl shadow-md border-2 border-slate-200 p-4 flex flex-wrap items-center justify-between gap-4">
@@ -167,7 +167,7 @@
           <span class="text-2xl">🏪➡️🛵</span>
           <div class="text-xs leading-tight">
             <div class="font-black text-amber-950" id="selfDeliveryTitle">Vendor = Delivery Partner</div>
-            <div class="text-amber-800 font-semibold" id="selfDeliverySub">Deliver own orders &amp; earn commission!</div>
+            <div class="text-amber-800 font-semibold" id="selfDeliverySub">Deliver own orders & earn commission!</div>
           </div>
           <button type="button" id="btnToggleSelfDelivery" onclick="toggleVendorAsDelivery()"
             class="px-3 py-1.5 rounded-xl font-black text-xs border-2 transition-all tap-card bg-slate-200 text-slate-800 border-slate-400">
@@ -211,7 +211,7 @@
             </div>
             <h3 class="text-xl font-black mb-1" id="vendorVoiceHeading">Speak in Your Language to Add Item</h3>
             <p class="text-xs text-indigo-200 mb-4" id="vendorVoiceSub">
-              Speak item name &amp; price in Telugu, Hindi, Tamil, or English. AI thinks, picks the right picture, and asks confirmation!
+              Speak item name & price in Telugu, Hindi, Tamil, or English. AI thinks, picks the right picture, and asks confirmation!
             </p>
 
             <!-- Big Mic Button -->
@@ -219,7 +219,7 @@
               <button type="button" id="btnVendorVoiceMic" onclick="startVendorVoiceAdd()"
                 class="w-24 h-24 rounded-full bg-gradient-to-b from-rose-500 to-red-600 hover:from-rose-400 hover:to-red-500 text-white flex flex-col items-center justify-center shadow-2xl border-4 border-white tap-card">
                 <span class="text-4xl">🎙️</span>
-                <span class="text-[11px] font-black mt-1 uppercase" id="vendorMicBtnText">TAP &amp; SPEAK</span>
+                <span class="text-[11px] font-black mt-1 uppercase" id="vendorMicBtnText">TAP & SPEAK</span>
               </button>
               <div id="vendorVoiceStatus" class="mt-2 text-xs font-bold text-amber-300 text-center min-h-[20px]">
                 Tap mic or choose a sample mother-tongue voice phrase below:
@@ -246,7 +246,7 @@
                   <span class="text-2xl">🏺</span>
                   <div class="leading-tight">
                     <div class="text-xs font-black text-amber-300">"मिट्टी का मटका ₹180"</div>
-                    <div class="text-[10px] text-white/80">Terracotta Pot &amp; Diyas</div>
+                    <div class="text-[10px] text-white/80">Terracotta Pot & Diyas</div>
                   </div>
                 </button>
 
@@ -255,7 +255,7 @@
                   <span class="text-2xl">🧵</span>
                   <div class="leading-tight">
                     <div class="text-xs font-black text-amber-300">"క్రాఫ్ట్ దారాలు పూసలు ₹150"</div>
-                    <div class="text-[10px] text-white/80">Silk Threads &amp; Beads Kit</div>
+                    <div class="text-[10px] text-white/80">Silk Threads & Beads Kit</div>
                   </div>
                 </button>
 
@@ -313,7 +313,7 @@
           <div>
             <div class="flex items-center justify-between mb-3">
               <span class="bg-indigo-100 text-indigo-900 font-black text-xs px-3 py-1 rounded-full uppercase">
-                ⌨️ Way 2: Type &amp; Pick Picture
+                ⌨️ Way 2: Type & Pick Picture
               </span>
               <button type="button" onclick="speakText('Type item name and price, choose picture, and press Add Item.')" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">
                 🔊
@@ -397,7 +397,7 @@
 
           <button type="button" onclick="submitVendorTypedItem()"
             class="mt-4 w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl shadow-lg text-base flex items-center justify-center gap-2 tap-card">
-            <span>➕</span> <span>AI Check &amp; Ask Confirmation</span>
+            <span>➕</span> <span>AI Check & Ask Confirmation</span>
           </button>
         </div>
 
@@ -515,7 +515,7 @@
             <span>🧵</span> <span>Handcraft Materials (ముడి సరుకులు • क्राफ्ट सामग्री)</span>
           </button>
           <button type="button" onclick="setCategoryFilter('grocery')" class="cat-filter-btn bg-emerald-100 text-emerald-950 font-black px-3.5 py-2 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 border border-emerald-300 tap-card" data-cat="grocery">
-            <span>🍅</span> <span>Groceries &amp; Farm (కూరగాయలు • किराना)</span>
+            <span>🍅</span> <span>Groceries & Farm (కూరగాయలు • किराना)</span>
           </button>
         </div>
 
@@ -568,7 +568,7 @@
             </button>
             <button type="button" onclick="openInvoiceModal()"
               class="bg-white hover:bg-amber-100 text-indigo-950 font-black px-4 py-2.5 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 shadow-lg border-2 border-amber-400 tap-card">
-              <span class="text-base">🧾</span> <span>View &amp; Print Bill (Invoice)</span>
+              <span class="text-base">🧾</span> <span>View & Print Bill (Invoice)</span>
             </button>
             <button type="button" onclick="openCustomerChatModal()"
               class="bg-amber-400 hover:bg-amber-300 text-indigo-950 font-black px-4 py-2.5 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 shadow tap-card">
@@ -607,7 +607,7 @@
               <span class="absolute left-3.5 top-3 text-xl">🔍</span>
               <input id="customerSearchInput" type="text" oninput="filterCustomerCatalog()"
                 onkeydown="if(event.key==='Enter') addSearchedCustomerItems()"
-                placeholder="Type any item (e.g. Bamboo, Toys, Pot, Milk, Rice, Dal, Bag) &amp; press Enter..."
+                placeholder="Type any item (e.g. Bamboo, Toys, Pot, Milk, Rice, Dal, Bag) & press Enter..."
                 class="w-full pl-11 pr-10 py-3 rounded-2xl border-2 border-slate-300 font-bold text-sm focus:border-indigo-600 focus:outline-none" />
               <button type="button" onclick="clearCustomerSearch()" class="absolute right-3 top-3 text-slate-400 hover:text-slate-700 font-black text-sm">✕</button>
             </div>
@@ -631,27 +631,27 @@
             <div class="flex flex-wrap gap-2">
               <button type="button" onclick="runCustomerVoiceCommand('ఏటికొప్పాక బొమ్మలు మరియు మట్టి కుండ', ['woodtoys', 'terracotta'])"
                 class="bg-amber-50 hover:bg-amber-100 text-amber-950 border border-amber-300 rounded-xl px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 tap-card">
-                <span>🏺</span> <span>"ఏటికొప్పాక బొమ్మలు + మట్టి కుండ (Wooden Toys &amp; Clay Pot)"</span>
+                <span>🏺</span> <span>"ఏటికొప్పాక బొమ్మలు + మట్టి కుండ (Wooden Toys & Clay Pot)"</span>
               </button>
               <button type="button" onclick="runCustomerVoiceCommand('కలంకారీ వస్త్రం మరియు ఎంబ్రాయిడరీ దారాలు', ['kalamkari', 'craftkit'])"
                 class="bg-purple-50 hover:bg-purple-100 text-purple-950 border border-purple-300 rounded-xl px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 tap-card">
-                <span>🧵</span> <span>"కలంకారీ + దారాలు (Kalamkari &amp; Craft Threads Kit)"</span>
+                <span>🧵</span> <span>"కలంకారీ + దారాలు (Kalamkari & Craft Threads Kit)"</span>
               </button>
               <button type="button" onclick="runCustomerVoiceCommand('వెదురు బుట్ట మరియు జూట్ బ్యాగ్', ['bamboo', 'jutebag'])"
                 class="bg-emerald-50 hover:bg-emerald-100 text-emerald-950 border border-emerald-300 rounded-xl px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 tap-card">
-                <span>🧺</span> <span>"వెదురు బుట్ట + జూట్ బ్యాగ్ (Bamboo Basket &amp; Jute Bag)"</span>
+                <span>🧺</span> <span>"వెదురు బుట్ట + జూట్ బ్యాగ్ (Bamboo Basket & Jute Bag)"</span>
               </button>
               <button type="button" onclick="runCustomerVoiceCommand('1 కిలో టమాటా మరియు 1 లీటర్ పాలు', ['tomato', 'milk'])"
                 class="bg-indigo-50 hover:bg-indigo-100 text-indigo-950 border border-indigo-200 rounded-xl px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 tap-card">
-                <span>🗣️</span> <span>"టమాటా + పాలు (Tomatoes &amp; Milk)"</span>
+                <span>🗣️</span> <span>"టమాటా + పాలు (Tomatoes & Milk)"</span>
               </button>
               <button type="button" onclick="runCustomerVoiceCommand('1 बैग चावल और सूरजमुखी तेल', ['rice', 'oil'])"
                 class="bg-emerald-50 hover:bg-emerald-100 text-emerald-950 border border-emerald-200 rounded-xl px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 tap-card">
-                <span>🗣️</span> <span>"चावल + तेल (Rice &amp; Cooking Oil)"</span>
+                <span>🗣️</span> <span>"चावल + तेल (Rice & Cooking Oil)"</span>
               </button>
               <button type="button" onclick="runCustomerVoiceCommand('ఉల్లిపాయలు మరియు ఆలుగడ్డ', ['onion', 'potato'])"
                 class="bg-amber-50 hover:bg-amber-100 text-amber-950 border border-amber-200 rounded-xl px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 tap-card">
-                <span>🗣️</span> <span>"ఉల్లిపాయలు + ఆలుగడ్డ (Onion &amp; Potato)"</span>
+                <span>🗣️</span> <span>"ఉల్లిపాయలు + ఆలుగడ్డ (Onion & Potato)"</span>
               </button>
             </div>
           </div>
@@ -736,7 +736,7 @@
             <span>🧵</span> <span>Handcraft Materials (ముడి సరుకులు • क्राफ्ट सामग्री)</span>
           </button>
           <button type="button" onclick="setCategoryFilter('grocery')" class="cat-filter-btn bg-emerald-100 text-emerald-950 font-black px-3.5 py-2 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 border border-emerald-300 tap-card" data-cat="grocery">
-            <span>🍅</span> <span>Groceries &amp; Farm (కూరగాయలు • किराना)</span>
+            <span>🍅</span> <span>Groceries & Farm (కూరగాయలు • किराना)</span>
           </button>
         </div>
 
@@ -764,7 +764,7 @@
                     New Delivery Order Notification
                   </h3>
                   <p class="text-xs font-bold text-slate-500">
-                    Tap 🔊 to hear locations, time &amp; your commission
+                    Tap 🔊 to hear locations, time & your commission
                   </p>
                 </div>
               </div>
@@ -817,7 +817,7 @@
               <div class="flex items-center gap-2">
                 <span class="text-2xl">💬📞</span>
                 <div>
-                  <h4 class="text-base font-black text-slate-900">Customer Chat &amp; Call</h4>
+                  <h4 class="text-base font-black text-slate-900">Customer Chat & Call</h4>
                   <p class="text-[11px] text-slate-500 font-semibold">Customer can hear your text with 🔊 Listen button</p>
                 </div>
               </div>
@@ -830,7 +830,7 @@
             <!-- Live Chat Feed Showing Customer Replies to Delivery Partner -->
             <div class="mb-3">
               <div class="flex items-center justify-between text-[11px] font-black text-indigo-900 uppercase mb-1.5 bg-indigo-50 px-2.5 py-1 rounded-lg">
-                <span>📥 Live Customer Replies &amp; Chat History:</span>
+                <span>📥 Live Customer Replies & Chat History:</span>
                 <span class="text-emerald-700">Tap 🔊 to Hear in Telugu</span>
               </div>
               <div id="deliveryChatMessagesContainer" class="max-h-52 overflow-y-auto custom-scroll space-y-2 bg-slate-50 p-2.5 rounded-2xl border-2 border-slate-200">
@@ -868,17 +868,17 @@
       </div>
     </section>
 
-  &lt;/main&gt;
+  </main>
 
-  &lt;!-- ======================================================================= --&gt;
-  &lt;!-- MODAL 1: VENDOR AI VOICE / ITEM CONFIRMATION MODAL (OK ✅ / NO ❌)       --&gt;
-  &lt;!-- ======================================================================= --&gt;
-  &lt;div id=&quot;modalVendorConfirm&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
-    &lt;div class=&quot;bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border-4 border-amber-400 text-center space-y-4&quot;&gt;
-      &lt;div class=&quot;inline-flex items-center gap-2 bg-indigo-100 text-indigo-900 font-black text-xs px-3 py-1 rounded-full&quot;&gt;
-        &lt;span&gt;🤖 AI Translated Mother Tongue&lt;/span&gt;
-        &lt;button type=&quot;button&quot; onclick=&quot;speakVendorPendingItem()&quot; class=&quot;bg-indigo-700 text-white px-2 py-0.5 rounded-full&quot;&gt;🔊 Listen&lt;/button&gt;
-      &lt;/div&gt;
+  <!-- ======================================================================= -->
+  <!-- MODAL 1: VENDOR AI VOICE / ITEM CONFIRMATION MODAL (OK ✅ / NO ❌)       -->
+  <!-- ======================================================================= -->
+  <div id="modalVendorConfirm" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border-4 border-amber-400 text-center space-y-4">
+      <div class="inline-flex items-center gap-2 bg-indigo-100 text-indigo-900 font-black text-xs px-3 py-1 rounded-full">
+        <span>🤖 AI Translated Mother Tongue</span>
+        <button type="button" onclick="speakVendorPendingItem()" class="bg-indigo-700 text-white px-2 py-0.5 rounded-full">🔊 Listen</button>
+      </div>
 
       <h3 class="text-xl font-black text-slate-900">
         Confirm Adding Item to Store?
@@ -905,23 +905,23 @@
         </button>
       </div>
     </div>
-  &lt;/div&gt;
+  </div>
 
-  &lt;!-- ======================================================================= --&gt;
-  &lt;!-- MODAL 1B: INTERACTIVE VOICE / MULTILINGUAL AI INPUT MODAL               --&gt;
-  &lt;!-- ======================================================================= --&gt;
-  &lt;div id=&quot;modalVoicePrompt&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
-    &lt;div class=&quot;bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-rose-500 space-y-4&quot;&gt;
-      &lt;div class=&quot;flex items-center justify-between&quot;&gt;
-        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
-          &lt;span class=&quot;w-10 h-10 rounded-full bg-rose-600 text-white flex items-center justify-center text-xl mic-pulse&quot;&gt;🎙️&lt;/span&gt;
-          &lt;div&gt;
-            &lt;h3 id=&quot;voiceModalTitle&quot; class=&quot;text-lg font-black text-slate-900&quot;&gt;AI Voice Recognition Active&lt;/h3&gt;
-            &lt;p id=&quot;voiceModalSub&quot; class=&quot;text-xs font-bold text-slate-500&quot;&gt;Speak or type what item you want in any language&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;button type=&quot;button&quot; onclick=&quot;closeVoicePromptModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
-      &lt;/div&gt;
+  <!-- ======================================================================= -->
+  <!-- MODAL 1B: INTERACTIVE VOICE / MULTILINGUAL AI INPUT MODAL               -->
+  <!-- ======================================================================= -->
+  <div id="modalVoicePrompt" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-rose-500 space-y-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-10 h-10 rounded-full bg-rose-600 text-white flex items-center justify-center text-xl mic-pulse">🎙️</span>
+          <div>
+            <h3 id="voiceModalTitle" class="text-lg font-black text-slate-900">AI Voice Recognition Active</h3>
+            <p id="voiceModalSub" class="text-xs font-bold text-slate-500">Speak or type what item you want in any language</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeVoicePromptModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl">✕</button>
+      </div>
 
       <div>
         <label for="voiceModalInput" class="block text-xs font-extrabold text-slate-600 uppercase mb-1">
@@ -954,25 +954,25 @@
         </button>
       </div>
     </div>
-  &lt;/div&gt;
+  </div>
 
-  &lt;!-- ======================================================================= --&gt;
-  &lt;!-- MODAL 2: CUSTOMER ORDER CONFIRMATION (GREEN &quot;OK&quot; / RED &quot;NO&quot; + COD/ONLINE)--&gt;
-  &lt;!-- ======================================================================= --&gt;
-  &lt;div id=&quot;modalCustomerConfirm&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
-    &lt;div class=&quot;bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-emerald-500 space-y-4 max-h-[92vh] overflow-y-auto&quot;&gt;
-      &lt;div class=&quot;flex items-center justify-between&quot;&gt;
-        &lt;span class=&quot;bg-emerald-100 text-emerald-900 font-black text-xs px-3 py-1 rounded-full uppercase&quot;&gt;
+  <!-- ======================================================================= -->
+  <!-- MODAL 2: CUSTOMER ORDER CONFIRMATION (GREEN "OK" / RED "NO" + COD/ONLINE)-->
+  <!-- ======================================================================= -->
+  <div id="modalCustomerConfirm" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-emerald-500 space-y-4 max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between">
+        <span class="bg-emerald-100 text-emerald-900 font-black text-xs px-3 py-1 rounded-full uppercase">
           🛒 Confirm Your Order
-        &lt;/span&gt;
-        &lt;button type=&quot;button&quot; onclick=&quot;speakCustomerOrderSummary()&quot;
-          class=&quot;bg-indigo-100 text-indigo-900 font-black text-xs px-3 py-1.5 rounded-full flex items-center gap-1&quot;&gt;
+        </span>
+        <button type="button" onclick="speakCustomerOrderSummary()"
+          class="bg-indigo-100 text-indigo-900 font-black text-xs px-3 py-1.5 rounded-full flex items-center gap-1">
           🔊 Listen Bill
-        &lt;/button&gt;
-      &lt;/div&gt;
+        </button>
+      </div>
 
       <h3 class="text-xl font-black text-slate-900 text-center">
-        Check Pictures &amp; Choose Payment
+        Check Pictures & Choose Payment
       </h3>
 
       <!-- Visual Items List -->
@@ -1036,40 +1036,40 @@
         </button>
       </div>
     </div>
-  &lt;/div&gt;
+  </div>
 
-  &lt;!-- ======================================================================= --&gt;
-  &lt;!-- MODAL 3: CUSTOMER &lt;-&gt; DELIVERY CHAT &amp; CALL WITH 🔊 LISTEN SPEAKER       --&gt;
-  &lt;!-- ======================================================================= --&gt;
-  &lt;div id=&quot;modalCustomerChat&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
-    &lt;div class=&quot;bg-white rounded-3xl max-w-lg w-full p-5 shadow-2xl border-4 border-indigo-600 flex flex-col max-h-[88vh]&quot;&gt;
-      &lt;div class=&quot;flex items-center justify-between pb-3 border-b border-slate-200&quot;&gt;
-        &lt;div class=&quot;flex items-center gap-2.5&quot;&gt;
-          &lt;span class=&quot;text-3xl&quot;&gt;🛵&lt;/span&gt;
-          &lt;div&gt;
-            &lt;h3 class=&quot;text-lg font-black text-slate-900&quot;&gt;Delivery Partner Chat &amp;amp; Call&lt;/h3&gt;
-            &lt;p class=&quot;text-xs text-emerald-700 font-bold&quot;&gt;Tap 🔊 Listen beside any message to hear it aloud!&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
-          &lt;!-- Translation Language Switcher for Chat Messages --&gt;
-          &lt;div class=&quot;flex items-center bg-slate-100 rounded-xl p-1 border border-slate-300&quot;&gt;
-            &lt;span class=&quot;text-xs px-1&quot; title=&quot;Translate English messages&quot;&gt;🌐&lt;/span&gt;
-            &lt;select id=&quot;chatLangSelect&quot; onchange=&quot;translateAllChatMessages(this.value)&quot; class=&quot;bg-transparent text-slate-900 font-bold text-xs focus:outline-none cursor-pointer&quot;&gt;
-              &lt;option value=&quot;te&quot;&gt;Translate to తెలుగు&lt;/option&gt;
-              &lt;option value=&quot;hi&quot;&gt;Translate to हिन्दी&lt;/option&gt;
-              &lt;option value=&quot;ta&quot;&gt;Translate to தமிழ்&lt;/option&gt;
-              &lt;option value=&quot;en&quot;&gt;Show in English&lt;/option&gt;
-            &lt;/select&gt;
-          &lt;/div&gt;
-          &lt;button type=&quot;button&quot; onclick=&quot;simulatePhoneCall(&#39;Delivery Partner Raju&#39;)&quot;
-            class=&quot;bg-emerald-600 hover:bg-emerald-500 text-white font-black px-3 py-2 rounded-xl text-xs flex items-center gap-1 tap-card&quot;&gt;
+  <!-- ======================================================================= -->
+  <!-- MODAL 3: CUSTOMER <-> DELIVERY CHAT & CALL WITH 🔊 LISTEN SPEAKER       -->
+  <!-- ======================================================================= -->
+  <div id="modalCustomerChat" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-5 shadow-2xl border-4 border-indigo-600 flex flex-col max-h-[88vh]">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+        <div class="flex items-center gap-2.5">
+          <span class="text-3xl">🛵</span>
+          <div>
+            <h3 class="text-lg font-black text-slate-900">Delivery Partner Chat &amp; Call</h3>
+            <p class="text-xs text-emerald-700 font-bold">Tap 🔊 Listen beside any message to hear it aloud!</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <!-- Translation Language Switcher for Chat Messages -->
+          <div class="flex items-center bg-slate-100 rounded-xl p-1 border border-slate-300">
+            <span class="text-xs px-1" title="Translate English messages">🌐</span>
+            <select id="chatLangSelect" onchange="translateAllChatMessages(this.value)" class="bg-transparent text-slate-900 font-bold text-xs focus:outline-none cursor-pointer">
+              <option value="te">Translate to తెలుగు</option>
+              <option value="hi">Translate to हिन्दी</option>
+              <option value="ta">Translate to தமிழ்</option>
+              <option value="en">Show in English</option>
+            </select>
+          </div>
+          <button type="button" onclick="simulatePhoneCall('Delivery Partner Raju')"
+            class="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-3 py-2 rounded-xl text-xs flex items-center gap-1 tap-card">
             📞 Call
-          &lt;/button&gt;
-          &lt;button type=&quot;button&quot; onclick=&quot;closeCustomerChatModal()&quot;
-            class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+          </button>
+          <button type="button" onclick="closeCustomerChatModal()"
+            class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl">✕</button>
+        </div>
+      </div>
 
       <!-- Messages List with 🔊 Speaker Icon on Every Message -->
       <div id="chatMessagesContainer" class="flex-1 overflow-y-auto custom-scroll py-4 space-y-3">
@@ -1104,23 +1104,23 @@
         </div>
       </div>
     </div>
-  &lt;/div&gt;
+  </div>
 
-  &lt;!-- ======================================================================= --&gt;
-  &lt;!-- MODAL 4: SEPARATE WALLETS FOR VENDOR, CUSTOMER &amp; DELIVERY PARTNER       --&gt;
-  &lt;!-- ======================================================================= --&gt;
-  &lt;div id=&quot;modalWallets&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
-    &lt;div class=&quot;bg-white rounded-3xl max-w-3xl w-full p-6 shadow-2xl border-4 border-emerald-500 max-h-[90vh] overflow-y-auto space-y-5&quot;&gt;
-      &lt;div class=&quot;flex items-center justify-between border-b border-slate-200 pb-3&quot;&gt;
-        &lt;div class=&quot;flex items-center gap-2.5&quot;&gt;
-          &lt;span class=&quot;text-3xl&quot;&gt;👛&lt;/span&gt;
-          &lt;div&gt;
-            &lt;h3 class=&quot;text-xl font-black text-slate-900&quot;&gt;Vocal Local 3-Role Wallets&lt;/h3&gt;
-            &lt;p class=&quot;text-xs text-slate-500 font-bold&quot;&gt;Separate Wallets for Shopkeeper, Customer &amp;amp; Delivery Partner&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;button type=&quot;button&quot; onclick=&quot;closeWalletModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-900 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
-      &lt;/div&gt;
+  <!-- ======================================================================= -->
+  <!-- MODAL 4: SEPARATE WALLETS FOR VENDOR, CUSTOMER & DELIVERY PARTNER       -->
+  <!-- ======================================================================= -->
+  <div id="modalWallets" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-3xl w-full p-6 shadow-2xl border-4 border-emerald-500 max-h-[90vh] overflow-y-auto space-y-5">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="text-3xl">👛</span>
+          <div>
+            <h3 class="text-xl font-black text-slate-900">Vocal Local 3-Role Wallets</h3>
+            <p class="text-xs text-slate-500 font-bold">Separate Wallets for Shopkeeper, Customer &amp; Delivery Partner</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeWalletModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-900 font-black w-9 h-9 rounded-xl">✕</button>
+      </div>
 
       <!-- 3 Separate Wallet Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -1156,7 +1156,7 @@
             <div id="walletCardCustomerAmt" class="text-2xl font-black text-emerald-950 my-1">₹1,500</div>
             <div class="text-[11px] text-emerald-800 font-semibold">
               • Instant UPI / Wallet Checkout<br/>
-              • Refunds &amp; 30% cancellation fee adjustments tracked automatically
+              • Refunds & 30% cancellation fee adjustments tracked automatically
             </div>
           </div>
           <button type="button" onclick="addSampleFunds('customer', 500)"
@@ -1176,7 +1176,7 @@
             <div id="walletCardDeliveryAmt" class="text-2xl font-black text-amber-950 my-1">₹680</div>
             <div class="text-[11px] text-amber-900 font-semibold">
               • Instant Commission per delivery<br/>
-              • Distance &amp; time bonus included
+              • Distance & time bonus included
             </div>
           </div>
           <button type="button" onclick="addSampleFunds('delivery', 200)"
@@ -1194,28 +1194,28 @@
         </div>
       </div>
     </div>
-  &lt;/div&gt;
+  </div>
 
-  &lt;!-- ======================================================================= --&gt;
-  &lt;!-- MODAL 6: OFFICIAL TAX INVOICE / BILL GENERATOR                          --&gt;
-  &lt;!-- ======================================================================= --&gt;
-  &lt;div id=&quot;modalInvoice&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4&quot;&gt;
-    &lt;div class=&quot;bg-white rounded-3xl max-w-2xl w-full p-5 sm:p-7 shadow-2xl border-4 border-amber-400 max-h-[92vh] overflow-y-auto space-y-4&quot;&gt;
-      &lt;div class=&quot;flex items-center justify-between border-b-2 border-slate-200 pb-3&quot;&gt;
-        &lt;div class=&quot;flex items-center gap-2.5&quot;&gt;
-          &lt;span class=&quot;text-3xl&quot;&gt;🧾&lt;/span&gt;
-          &lt;div&gt;
-            &lt;h3 class=&quot;text-lg sm:text-xl font-black text-slate-900&quot;&gt;Official GST Retail Bill / Invoice&lt;/h3&gt;
-            &lt;p class=&quot;text-xs text-slate-500 font-bold&quot;&gt;Vocal Local Verified • Ready to View, Print &amp;amp; Download&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
-          &lt;button type=&quot;button&quot; onclick=&quot;speakInvoiceSummary()&quot; class=&quot;bg-indigo-100 hover:bg-indigo-200 text-indigo-900 font-black px-3 py-1.5 rounded-xl text-xs flex items-center gap-1 tap-card&quot;&gt;
+  <!-- ======================================================================= -->
+  <!-- MODAL 6: OFFICIAL TAX INVOICE / BILL GENERATOR                          -->
+  <!-- ======================================================================= -->
+  <div id="modalInvoice" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-5 sm:p-7 shadow-2xl border-4 border-amber-400 max-h-[92vh] overflow-y-auto space-y-4">
+      <div class="flex items-center justify-between border-b-2 border-slate-200 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="text-3xl">🧾</span>
+          <div>
+            <h3 class="text-lg sm:text-xl font-black text-slate-900">Official GST Retail Bill / Invoice</h3>
+            <p class="text-xs text-slate-500 font-bold">Vocal Local Verified • Ready to View, Print &amp; Download</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="speakInvoiceSummary()" class="bg-indigo-100 hover:bg-indigo-200 text-indigo-900 font-black px-3 py-1.5 rounded-xl text-xs flex items-center gap-1 tap-card">
             🔊 Listen Bill
-          &lt;/button&gt;
-          &lt;button type=&quot;button&quot; onclick=&quot;closeInvoiceModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+          </button>
+          <button type="button" onclick="closeInvoiceModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl">✕</button>
+        </div>
+      </div>
 
       <!-- Printable Invoice Sheet Area -->
       <div id="invoicePrintArea" class="bg-white rounded-2xl p-4 sm:p-6 border-2 border-slate-300 shadow-sm space-y-4 text-slate-900">
@@ -1227,7 +1227,7 @@
               <span class="text-xl font-black tracking-tight text-indigo-950">VOCAL LOCAL</span>
               <span class="bg-emerald-100 text-emerald-900 text-[10px] font-black px-2 py-0.5 rounded-full">PAID BILL</span>
             </div>
-            <div class="text-xs font-black text-slate-700 mt-1">Sri Lakshmi Kirana &amp; Handcraft Store</div>
+            <div class="text-xs font-black text-slate-700 mt-1">Sri Lakshmi Kirana & Handcraft Store</div>
             <div class="text-[11px] text-slate-500 font-medium">Madhuravada Main Road, Visakhapatnam, AP - 530048</div>
             <div class="text-[11px] text-slate-500 font-medium">GSTIN: 37AAACL1234F1Z8 • Phone: +91 94401 88992</div>
           </div>
@@ -1321,28 +1321,28 @@
         </div>
       </div>
     </div>
-  &lt;/div&gt;
+  </div>
 
-  &lt;!-- ======================================================================= --&gt;
-  &lt;!-- MODAL 7: LIVE GPS MAP TRACKING INTERFACE (Customer Access)              --&gt;
-  &lt;!-- ======================================================================= --&gt;
-  &lt;div id=&quot;modalLiveMap&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4&quot;&gt;
-    &lt;div class=&quot;bg-white rounded-3xl max-w-3xl w-full p-5 sm:p-6 shadow-2xl border-4 border-cyan-400 max-h-[92vh] overflow-y-auto space-y-4&quot;&gt;
-      &lt;div class=&quot;flex items-center justify-between border-b-2 border-slate-200 pb-3&quot;&gt;
-        &lt;div class=&quot;flex items-center gap-2.5&quot;&gt;
-          &lt;span class=&quot;text-3xl&quot;&gt;🗺️📍&lt;/span&gt;
-          &lt;div&gt;
-            &lt;h3 class=&quot;text-lg sm:text-xl font-black text-slate-900&quot;&gt;Live GPS Order Map Tracking&lt;/h3&gt;
-            &lt;p class=&quot;text-xs text-slate-500 font-bold&quot;&gt;Real-time driver location, milestones &amp;amp; speed in Madhuravada&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
-          &lt;button type=&quot;button&quot; onclick=&quot;speakMapTrackingStatus()&quot; class=&quot;bg-cyan-100 hover:bg-cyan-200 text-cyan-950 font-black px-3 py-1.5 rounded-xl text-xs flex items-center gap-1 tap-card&quot;&gt;
+  <!-- ======================================================================= -->
+  <!-- MODAL 7: LIVE GPS MAP TRACKING INTERFACE (Customer Access)              -->
+  <!-- ======================================================================= -->
+  <div id="modalLiveMap" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-3xl max-w-3xl w-full p-5 sm:p-6 shadow-2xl border-4 border-cyan-400 max-h-[92vh] overflow-y-auto space-y-4">
+      <div class="flex items-center justify-between border-b-2 border-slate-200 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="text-3xl">🗺️📍</span>
+          <div>
+            <h3 class="text-lg sm:text-xl font-black text-slate-900">Live GPS Order Map Tracking</h3>
+            <p class="text-xs text-slate-500 font-bold">Real-time driver location, milestones &amp; speed in Madhuravada</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="speakMapTrackingStatus()" class="bg-cyan-100 hover:bg-cyan-200 text-cyan-950 font-black px-3 py-1.5 rounded-xl text-xs flex items-center gap-1 tap-card">
             🔊 Listen Status
-          &lt;/button&gt;
-          &lt;button type=&quot;button&quot; onclick=&quot;closeLiveMapModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+          </button>
+          <button type="button" onclick="closeLiveMapModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl">✕</button>
+        </div>
+      </div>
 
       <!-- Live Interactive Visual Vector Map Canvas -->
       <div class="relative bg-slate-900 rounded-3xl p-4 overflow-hidden border-2 border-slate-700 shadow-inner">
@@ -1398,7 +1398,7 @@
       <!-- Real-Time Metrics & Milestone Timeline -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <div class="bg-cyan-50 border-2 border-cyan-200 rounded-2xl p-3 text-center">
-          <div class="text-[11px] font-extrabold text-cyan-800 uppercase">Speed &amp; Battery</div>
+          <div class="text-[11px] font-extrabold text-cyan-800 uppercase">Speed & Battery</div>
           <div class="text-lg font-black text-cyan-950 mt-0.5">28 km/h • 🔋 88%</div>
         </div>
         <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-3 text-center">
@@ -1442,23 +1442,23 @@
         </button>
       </div>
     </div>
-  &lt;/div&gt;
+  </div>
 
-  &lt;!-- ======================================================================= --&gt;
-  &lt;!-- MODAL 5: END-OF-DAY SUMMARY / STATEMENTS &amp; DOWNLOAD OPTION              --&gt;
-  &lt;!-- ======================================================================= --&gt;
-  &lt;div id=&quot;modalStatements&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
-    &lt;div class=&quot;bg-white rounded-3xl max-w-3xl w-full p-6 shadow-2xl border-4 border-amber-400 max-h-[90vh] overflow-y-auto space-y-4&quot;&gt;
-      &lt;div class=&quot;flex items-center justify-between border-b border-slate-200 pb-3&quot;&gt;
-        &lt;div class=&quot;flex items-center gap-2.5&quot;&gt;
-          &lt;span class=&quot;text-3xl&quot;&gt;📊&lt;/span&gt;
-          &lt;div&gt;
-            &lt;h3 class=&quot;text-xl font-black text-slate-900&quot;&gt;End-of-Day Summary &amp;amp; Statements&lt;/h3&gt;
-            &lt;p class=&quot;text-xs text-slate-500 font-bold&quot;&gt;Select Vendor, Customer, or Delivery Partner to view &amp;amp; download statement&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;button type=&quot;button&quot; onclick=&quot;closeStatementModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-900 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
-      &lt;/div&gt;
+  <!-- ======================================================================= -->
+  <!-- MODAL 5: END-OF-DAY SUMMARY / STATEMENTS & DOWNLOAD OPTION              -->
+  <!-- ======================================================================= -->
+  <div id="modalStatements" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-3xl w-full p-6 shadow-2xl border-4 border-amber-400 max-h-[90vh] overflow-y-auto space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="text-3xl">📊</span>
+          <div>
+            <h3 class="text-xl font-black text-slate-900">End-of-Day Summary &amp; Statements</h3>
+            <p class="text-xs text-slate-500 font-bold">Select Vendor, Customer, or Delivery Partner to view &amp; download statement</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeStatementModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-900 font-black w-9 h-9 rounded-xl">✕</button>
+      </div>
 
       <!-- Filter Tabs for Statement Role -->
       <div class="grid grid-cols-3 gap-2">
@@ -1499,24 +1499,24 @@
         </div>
       </div>
     </div>
-  &lt;/div&gt;
+  </div>
 
-  &lt;!-- ======================================================================= --&gt;
-  &lt;!-- FLOATING AI VOICE CHATBOT FOR USER QUERIES (Accessible with 🔊 Listen)  --&gt;
-  &lt;!-- ======================================================================= --&gt;
-  &lt;div class=&quot;fixed bottom-4 right-4 z-40&quot;&gt;
-    &lt;!-- Chatbot Panel --&gt;
-    &lt;div id=&quot;chatbotPanel&quot; class=&quot;hidden mb-3 w-80 sm:w-96 bg-white rounded-3xl shadow-2xl border-4 border-indigo-700 overflow-hidden flex flex-col max-h-[500px]&quot;&gt;
-      &lt;div class=&quot;bg-gradient-to-r from-indigo-900 to-emerald-900 text-white p-3.5 flex items-center justify-between&quot;&gt;
-        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
-          &lt;span class=&quot;text-2xl&quot;&gt;🤖🎙️&lt;/span&gt;
-          &lt;div&gt;
-            &lt;div class=&quot;font-black text-sm&quot;&gt;VOCAL LOCAL AI Helper&lt;/div&gt;
-            &lt;div class=&quot;text-[10px] text-amber-300 font-bold&quot;&gt;Ask anything by Voice or Tap • 🔊 Speaks Replies&lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;button type=&quot;button&quot; onclick=&quot;toggleChatbot()&quot; class=&quot;bg-white/20 hover:bg-white/30 w-8 h-8 rounded-xl font-black text-sm&quot;&gt;✕&lt;/button&gt;
-      &lt;/div&gt;
+  <!-- ======================================================================= -->
+  <!-- FLOATING AI VOICE CHATBOT FOR USER QUERIES (Accessible with 🔊 Listen)  -->
+  <!-- ======================================================================= -->
+  <div class="fixed bottom-4 right-4 z-40">
+    <!-- Chatbot Panel -->
+    <div id="chatbotPanel" class="hidden mb-3 w-80 sm:w-96 bg-white rounded-3xl shadow-2xl border-4 border-indigo-700 overflow-hidden flex flex-col max-h-[500px]">
+      <div class="bg-gradient-to-r from-indigo-900 to-emerald-900 text-white p-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">🤖🎙️</span>
+          <div>
+            <div class="font-black text-sm">VOCAL LOCAL AI Helper</div>
+            <div class="text-[10px] text-amber-300 font-bold">Ask anything by Voice or Tap • 🔊 Speaks Replies</div>
+          </div>
+        </div>
+        <button type="button" onclick="toggleChatbot()" class="bg-white/20 hover:bg-white/30 w-8 h-8 rounded-xl font-black text-sm">✕</button>
+      </div>
 
       <!-- Chatbot Messages -->
       <div id="chatbotMessagesList" class="p-3 space-y-2.5 overflow-y-auto custom-scroll flex-1 max-h-64 bg-slate-50">
@@ -1565,35 +1565,35 @@
       <span class="text-2xl">🤖🎙️</span>
       <div class="text-left leading-tight">
         <div class="text-xs font-black">AI HELP CHATBOT</div>
-        <div class="text-[10px] text-amber-300">Tap &amp; Listen 🔊</div>
+        <div class="text-[10px] text-amber-300">Tap & Listen 🔊</div>
       </div>
     </button>
-  &lt;/div&gt;
+  </div>
 
-  &lt;!-- ======================================================================= --&gt;
-  &lt;!-- MODAL 8: SWIGGY-STYLE ONE-TIME LOGIN PAGE (Email, Password, Google)     --&gt;
-  &lt;!-- ======================================================================= --&gt;
-  &lt;div id=&quot;modalSwiggyLogin&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4&quot;&gt;
-    &lt;div class=&quot;bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border-4 border-orange-500&quot;&gt;
-      &lt;!-- Swiggy-Style Orange Top Hero Banner --&gt;
-      &lt;div class=&quot;bg-gradient-to-r from-orange-500 via-orange-600 to-amber-500 text-white p-5 relative&quot;&gt;
-        &lt;div class=&quot;flex items-center justify-between&quot;&gt;
-          &lt;div class=&quot;flex items-center gap-3&quot;&gt;
-            &lt;div class=&quot;w-14 h-14 rounded-2xl bg-white text-orange-600 flex items-center justify-center text-3xl font-black shadow-lg&quot;&gt;
+  <!-- ======================================================================= -->
+  <!-- MODAL 8: SWIGGY-STYLE ONE-TIME LOGIN PAGE (Email, Password, Google)     -->
+  <!-- ======================================================================= -->
+  <div id="modalSwiggyLogin" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border-4 border-orange-500">
+      <!-- Swiggy-Style Orange Top Hero Banner -->
+      <div class="bg-gradient-to-r from-orange-500 via-orange-600 to-amber-500 text-white p-5 relative">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-14 h-14 rounded-2xl bg-white text-orange-600 flex items-center justify-center text-3xl font-black shadow-lg">
               🎙️
-            &lt;/div&gt;
-            &lt;div&gt;
-              &lt;span class=&quot;bg-indigo-950 text-amber-300 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase&quot;&gt;One-Time Login&lt;/span&gt;
-              &lt;h3 class=&quot;text-2xl font-black tracking-tight mt-0.5&quot;&gt;VOCAL LOCAL&lt;/h3&gt;
-              &lt;p class=&quot;text-xs font-bold text-orange-100&quot;&gt;సులభమైన లాగిన్ • ఒక్కసారి మాత్రమే!&lt;/p&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-          &lt;button type=&quot;button&quot; onclick=&quot;speakText(&#39;వోకల్ లోకల్ యాప్ కి స్వాగతం! ఇమెయిల్, పాస్‌వర్డ్ లేదా గూగుల్ బటన్ నొక్కి ఒక్కసారి లాగిన్ చేయండి.&#39;)&quot;
-            class=&quot;bg-white text-orange-700 font-black px-3 py-1.5 rounded-xl text-xs flex items-center gap-1 shadow tap-card&quot;&gt;
+            </div>
+            <div>
+              <span class="bg-indigo-950 text-amber-300 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase">One-Time Login</span>
+              <h3 class="text-2xl font-black tracking-tight mt-0.5">VOCAL LOCAL</h3>
+              <p class="text-xs font-bold text-orange-100">సులభమైన లాగిన్ • ఒక్కసారి మాత్రమే!</p>
+            </div>
+          </div>
+          <button type="button" onclick="speakText('వోకల్ లోకల్ యాప్ కి స్వాగతం! ఇమెయిల్, పాస్‌వర్డ్ లేదా గూగుల్ బటన్ నొక్కి ఒక్కసారి లాగిన్ చేయండి.')"
+            class="bg-white text-orange-700 font-black px-3 py-1.5 rounded-xl text-xs flex items-center gap-1 shadow tap-card">
             🔊 తెలుగు
-          &lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+          </button>
+        </div>
+      </div>
 
       <!-- Login Form Body -->
       <div class="p-6 space-y-4">
@@ -1644,23 +1644,23 @@
         </p>
       </div>
     </div>
-  &lt;/div&gt;
+  </div>
 
-  &lt;!-- ======================================================================= --&gt;
-  &lt;!-- MODAL 9: VENDOR EDIT ITEM MODAL (Fix Price, Name, Unit &amp; Stock Qty)     --&gt;
-  &lt;!-- ======================================================================= --&gt;
-  &lt;div id=&quot;modalVendorEditItem&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
-    &lt;div class=&quot;bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border-4 border-indigo-600 space-y-4&quot;&gt;
-      &lt;div class=&quot;flex items-center justify-between border-b border-slate-200 pb-3&quot;&gt;
-        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
-          &lt;span class=&quot;text-2xl&quot;&gt;✏️&lt;/span&gt;
-          &lt;div&gt;
-            &lt;h3 class=&quot;text-lg font-black text-slate-900&quot;&gt;Edit Store Item &amp;amp; Price&lt;/h3&gt;
-            &lt;p class=&quot;text-xs font-bold text-slate-500&quot;&gt;వస్తువు ధర మరియు వివరాలు మార్చండి&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;button type=&quot;button&quot; onclick=&quot;closeVendorEditModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
-      &lt;/div&gt;
+  <!-- ======================================================================= -->
+  <!-- MODAL 9: VENDOR EDIT ITEM MODAL (Fix Price, Name, Unit & Stock Qty)     -->
+  <!-- ======================================================================= -->
+  <div id="modalVendorEditItem" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border-4 border-indigo-600 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">✏️</span>
+          <div>
+            <h3 class="text-lg font-black text-slate-900">Edit Store Item &amp; Price</h3>
+            <p class="text-xs font-bold text-slate-500">వస్తువు ధర మరియు వివరాలు మార్చండి</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeVendorEditModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl">✕</button>
+      </div>
 
       <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-200">
         <img id="editModalItemImg" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2216%22%20fill%3D%22%23ffedd5%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2265%22%20font-size%3D%2250%22%20text-anchor%3D%22middle%22%3E%F0%9F%8F%BA%3C/text%3E%3C/svg%3E" alt="Item" class="w-16 h-16 rounded-xl object-cover border border-slate-300" />
@@ -1717,28 +1717,28 @@
         </button>
       </div>
     </div>
-  &lt;/div&gt;
+  </div>
 
-  &lt;!-- ======================================================================= --&gt;
-  &lt;!-- MODAL 10: DASHBOARD CART MODAL (Add +, Decrease −, or Remove 🗑️ Items)  --&gt;
-  &lt;!-- ======================================================================= --&gt;
-  &lt;div id=&quot;modalDashboardCart&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
-    &lt;div class=&quot;bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-rose-500 space-y-4 max-h-[90vh] flex flex-col&quot;&gt;
-      &lt;div class=&quot;flex items-center justify-between border-b border-slate-200 pb-3&quot;&gt;
-        &lt;div class=&quot;flex items-center gap-2.5&quot;&gt;
-          &lt;span class=&quot;text-3xl&quot;&gt;🛒&lt;/span&gt;
-          &lt;div&gt;
-            &lt;h3 class=&quot;text-xl font-black text-slate-900&quot;&gt;Dashboard Cart (నా బాస్కెట్)&lt;/h3&gt;
-            &lt;p class=&quot;text-xs font-bold text-slate-500&quot;&gt;Add (+), Reduce (−), or Remove (🗑️) items easily&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
-          &lt;button type=&quot;button&quot; onclick=&quot;speakCustomerOrderSummary()&quot; class=&quot;bg-indigo-100 text-indigo-950 font-black px-3 py-1.5 rounded-xl text-xs&quot;&gt;
+  <!-- ======================================================================= -->
+  <!-- MODAL 10: DASHBOARD CART MODAL (Add +, Decrease −, or Remove 🗑️ Items)  -->
+  <!-- ======================================================================= -->
+  <div id="modalDashboardCart" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-rose-500 space-y-4 max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="text-3xl">🛒</span>
+          <div>
+            <h3 class="text-xl font-black text-slate-900">Dashboard Cart (నా బాస్కెట్)</h3>
+            <p class="text-xs font-bold text-slate-500">Add (+), Reduce (−), or Remove (🗑️) items easily</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="speakCustomerOrderSummary()" class="bg-indigo-100 text-indigo-950 font-black px-3 py-1.5 rounded-xl text-xs">
             🔊 తెలుగులో వినండి
-          &lt;/button&gt;
-          &lt;button type=&quot;button&quot; onclick=&quot;closeDashboardCartModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+          </button>
+          <button type="button" onclick="closeDashboardCartModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl">✕</button>
+        </div>
+      </div>
 
       <div id="dashboardCartModalList" class="flex-1 overflow-y-auto custom-scroll space-y-2.5 py-2">
         <!-- Populated dynamically by renderCustomerCart() -->
@@ -1765,19 +1765,19 @@
         </div>
       </div>
     </div>
-  &lt;/div&gt;
+  </div>
 
-  &lt;!-- TOAST NOTIFICATION BANNER --&gt;
-  &lt;div id=&quot;toastBanner&quot; class=&quot;fixed top-20 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl border-2 border-amber-400 flex items-center gap-3 max-w-md w-[92%]&quot;&gt;
-    &lt;span id=&quot;toastIcon&quot; class=&quot;text-2xl&quot;&gt;✅&lt;/span&gt;
-    &lt;div id=&quot;toastMessage&quot; class=&quot;text-xs sm:text-sm font-bold flex-1&quot;&gt;Action completed!&lt;/div&gt;
-    &lt;button type=&quot;button&quot; onclick=&quot;hideToast()&quot; class=&quot;text-amber-300 font-black text-sm&quot;&gt;✕&lt;/button&gt;
-  &lt;/div&gt;
+  <!-- TOAST NOTIFICATION BANNER -->
+  <div id="toastBanner" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl border-2 border-amber-400 flex items-center gap-3 max-w-md w-[92%]">
+    <span id="toastIcon" class="text-2xl">✅</span>
+    <div id="toastMessage" class="text-xs sm:text-sm font-bold flex-1">Action completed!</div>
+    <button type="button" onclick="hideToast()" class="text-amber-300 font-black text-sm">✕</button>
+  </div>
 
-  &lt;!-- ======================================================================= --&gt;
-  &lt;!-- APPLICATION JAVASCRIPT                                                  --&gt;
-  &lt;!-- ======================================================================= --&gt;
-  &lt;script src=&quot;images.js&quot;&gt;&lt;/script&gt;
-  &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+  <!-- ======================================================================= -->
+  <!-- APPLICATION JAVASCRIPT                                                  -->
+  <!-- ======================================================================= -->
+  <script src="images.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
