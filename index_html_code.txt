@@ -1,0 +1,1783 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+  &lt;title&gt;VOCAL LOCAL — Visual &amp;amp; Voice Commerce for Everyone&lt;/title&gt;
+  &lt;script src=&quot;https://cdn.tailwindcss.com/3.4.17&quot;&gt;&lt;/script&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap&quot; rel=&quot;stylesheet&quot; /&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; /&gt;
+&lt;/head&gt;
+&lt;body class=&quot;min-h-screen pb-28&quot;&gt;
+
+  &lt;!-- TOP HEADER: App Logo (Mic Symbol), Language Selector, Audio Helper, Role Switcher, Wallet &amp; Statement --&gt;
+  &lt;header class=&quot;sticky top-0 z-40 bg-gradient-to-r from-indigo-900 via-indigo-800 to-emerald-900 text-white shadow-xl border-b-4 border-amber-400&quot;&gt;
+    &lt;div class=&quot;max-w-7xl mx-auto px-3 sm:px-6 py-3&quot;&gt;
+      &lt;div class=&quot;flex flex-wrap items-center justify-between gap-3&quot;&gt;
+        
+        <!-- Brand Logo: Mic Symbol + VOCAL LOCAL -->
+        <div class="flex items-center gap-3">
+          <button type="button" onclick="speakText(getLangText('welcomeVoice'))" title="Tap to hear Welcome Guide"
+            class="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg border-2 border-white tap-card group">
+            <!-- Prominent Microphone Logo SVG -->
+            <svg class="w-9 h-9 text-indigo-950" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/>
+              <path d="M3.5 11a8.5 8.5 0 0 0 1.2 4.35l1.48-.98A6.7 6.7 0 0 1 5.3 11H3.5zm15.2 0a6.7 6.7 0 0 1-.88 3.37l1.48.98A8.5 8.5 0 0 0 20.5 11h-1.8z" opacity="0.6"/>
+            </svg>
+            <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-[10px] font-black px-1.5 py-0.5 rounded-full border border-white">🔊</span>
+          </button>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-xl sm:text-2xl font-black tracking-tight text-white flex items-center gap-1.5">
+                VOCAL LOCAL
+              </h1>
+              <span class="bg-amber-400 text-indigo-950 text-xs font-extrabold px-2 py-0.5 rounded-full">🎙️ AI VOICE</span>
+            </div>
+            <p id="headerSubtitle" class="text-xs sm:text-sm text-amber-200 font-semibold">
+              Speak &amp; Tap Pictures • Easy for Everyone
+            </p>
+          </div>
+        </div>
+
+        <!-- Language Mother-Tongue Selector + Quick Actions -->
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Mother Tongue Language Selector -->
+          <div class="flex items-center bg-white/15 backdrop-blur rounded-xl p-1 border border-white/25">
+            <span class="text-lg px-1.5" title="Mother Tongue / Regional Language">🗣️</span>
+            <select id="langSelect" onchange="changeLanguage(this.value)" aria-label="Select Regional Language"
+              class="bg-transparent text-white font-bold text-xs sm:text-sm py-1.5 pr-2 focus:outline-none cursor-pointer">
+              <option value="te" class="text-slate-900">తెలుగు + English (Telugu)</option>
+              <option value="hi" class="text-slate-900">हिन्दी + English (Hindi)</option>
+              <option value="ta" class="text-slate-900">தமிழ் + English (Tamil)</option>
+              <option value="en" class="text-slate-900">English Only</option>
+            </select>
+          </div>
+
+          <!-- Active Role Wallet Quick Button -->
+          <button type="button" onclick="openWalletModal()"
+            class="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black px-3 py-2 rounded-xl shadow-md border-2 border-white tap-card">
+            <span class="text-xl">👛</span>
+            <div class="text-left leading-tight">
+              <div class="text-[10px] uppercase font-extrabold opacity-80" id="headerWalletLabel">My Wallet</div>
+              <div class="text-sm sm:text-base font-black" id="headerWalletBalance">₹1,250</div>
+            </div>
+          </button>
+
+          <!-- Dashboard Cart Quick Button (Add / Remove Items Anytime) -->
+          <button type="button" onclick="openDashboardCartModal()"
+            class="relative flex items-center gap-1.5 bg-rose-500 hover:bg-rose-400 text-white font-black px-3 py-2 rounded-xl shadow-md border-2 border-white tap-card">
+            <span class="text-xl">🛒</span>
+            <div class="text-left leading-tight">
+              <div class="text-[10px] uppercase font-extrabold">Cart • బాస్కెట్</div>
+              <div id="headerCartSummary" class="text-xs font-black">2 Items</div>
+            </div>
+          </button>
+
+          <!-- Day Summary / Statement Button -->
+          <button type="button" onclick="openStatementModal()"
+            class="flex items-center gap-1.5 bg-amber-400 hover:bg-amber-300 text-indigo-950 font-black px-3 py-2 rounded-xl shadow-md border-2 border-white tap-card">
+            <span class="text-xl">📊</span>
+            <div class="text-left leading-tight hidden sm:block">
+              <div class="text-[10px] uppercase font-extrabold">Day Summary</div>
+              <div class="text-xs font-black">📥 Download</div>
+            </div>
+          </button>
+
+          <!-- One-Time Swiggy-Style Login / Account Button -->
+          <button type="button" onclick="openSwiggyLoginModal()"
+            class="flex items-center gap-1.5 bg-orange-500 hover:bg-orange-400 text-white font-black px-3 py-2 rounded-xl shadow-md border-2 border-white tap-card">
+            <span class="text-xl">👤</span>
+            <div class="text-left leading-tight hidden sm:block">
+              <div class="text-[10px] uppercase font-extrabold" id="headerUserStatus">Logged In</div>
+              <div class="text-xs font-black" id="headerUserName">Swiggy Login</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3 ROLE INTERFACES BAR (Visual Picture Tabs for Uneducated Users) -->
+      <div class="grid grid-cols-3 gap-2 sm:gap-4 mt-3 pt-2 border-t border-white/20">
+        <!-- 1. VENDOR (Shopkeeper) -->
+        <button type="button" id="tabBtnVendor" onclick="switchRole('vendor')"
+          class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 py-2.5 px-2 rounded-2xl font-black transition-all border-2 tap-card bg-white text-indigo-950 border-amber-400 shadow-lg">
+          <span class="text-2xl sm:text-3xl">🏪</span>
+          <div class="text-center sm:text-left leading-tight">
+            <div class="text-xs sm:text-base font-black" id="roleVendorTitle">1. SHOPKEEPER</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75" id="roleVendorSub">దుకాణం • दुकानदार</div>
+          </div>
+        </button>
+
+        <!-- 2. CUSTOMER (Buyer) -->
+        <button type="button" id="tabBtnCustomer" onclick="switchRole('customer')"
+          class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 py-2.5 px-2 rounded-2xl font-black transition-all border-2 tap-card bg-indigo-950/60 text-white border-white/20 hover:bg-indigo-950">
+          <div class="relative">
+            <span class="text-2xl sm:text-3xl">🛒</span>
+            <span id="customerCartBadge" class="hidden absolute -top-1.5 -right-2 bg-rose-500 text-white text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center border border-white">0</span>
+          </div>
+          <div class="text-center sm:text-left leading-tight">
+            <div class="text-xs sm:text-base font-black" id="roleCustomerTitle">2. CUSTOMER</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75" id="roleCustomerSub">కస్టమర్ • ग्राहक</div>
+          </div>
+        </button>
+
+        <!-- 3. DELIVERY PARTNER -->
+        <button type="button" id="tabBtnDelivery" onclick="switchRole('delivery')"
+          class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-3 py-2.5 px-2 rounded-2xl font-black transition-all border-2 tap-card bg-indigo-950/60 text-white border-white/20 hover:bg-indigo-950">
+          <div class="relative">
+            <span class="text-2xl sm:text-3xl">🛵</span>
+            <span id="deliveryAlertBadge" class=" absolute -top-1.5 -right-2 bg-amber-400 text-indigo-950 text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center border border-indigo-950">1</span>
+          </div>
+          <div class="text-center sm:text-left leading-tight">
+            <div class="text-xs sm:text-base font-black" id="roleDeliveryTitle">3. DELIVERY</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75" id="roleDeliverySub">డెలివరీ • डिलीवरी</div>
+          </div>
+        </button>
+      </div>
+    </div>
+  &lt;/header&gt;
+
+  &lt;!-- MAIN CONTAINER --&gt;
+  &lt;main class=&quot;max-w-7xl mx-auto px-3 sm:px-6 pt-5 space-y-6&quot;&gt;
+
+    <!-- ROLE WALLET & PAYOUT QUICK BANNER (Always visible for current role with speaker button) -->
+    <section class="bg-white rounded-3xl shadow-md border-2 border-slate-200 p-4 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div id="roleBannerAvatar" class="w-14 h-14 rounded-2xl bg-indigo-100 flex items-center justify-center text-3xl border-2 border-indigo-300">
+          🏪
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 id="roleBannerTitle" class="text-lg sm:text-xl font-black text-slate-900">
+              Shopkeeper (Vendor) Mode
+            </h2>
+            <button type="button" onclick="speakCurrentRoleGuide()" class="bg-indigo-100 hover:bg-indigo-200 text-indigo-900 font-bold px-2.5 py-1 rounded-full text-xs flex items-center gap-1 tap-card" title="Listen to instructions">
+              🔊 <span id="listenGuideLabel">Listen</span>
+            </button>
+          </div>
+          <p id="roleBannerDesc" class="text-xs sm:text-sm text-slate-600 font-medium">
+            Tap mic to add items in your mother tongue, or toggle stock ON/OFF with one touch.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right controls: Wallet summary + Vendor Self-Delivery Switch -->
+      <div class="flex flex-wrap items-center gap-3">
+        <!-- Vendor-can-become-Delivery-Partner toggle (Visible in Vendor or Delivery mode) -->
+        <div id="vendorDeliverySwitchBox" class="flex items-center gap-3 bg-amber-50 border-2 border-amber-300 rounded-2xl px-3.5 py-2">
+          <span class="text-2xl">🏪➡️🛵</span>
+          <div class="text-xs leading-tight">
+            <div class="font-black text-amber-950" id="selfDeliveryTitle">Vendor = Delivery Partner</div>
+            <div class="text-amber-800 font-semibold" id="selfDeliverySub">Deliver own orders &amp; earn commission!</div>
+          </div>
+          <button type="button" id="btnToggleSelfDelivery" onclick="toggleVendorAsDelivery()"
+            class="px-3 py-1.5 rounded-xl font-black text-xs border-2 transition-all tap-card bg-slate-200 text-slate-800 border-slate-400">
+            OFF
+          </button>
+        </div>
+
+        <!-- 3-Wallets Quick Strip -->
+        <div class="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 text-xs">
+          <button type="button" onclick="openWalletModal('vendor')" class="px-2.5 py-1.5 rounded-xl bg-white shadow-sm font-bold text-slate-800 flex items-center gap-1 tap-card">
+            🏪 <span id="miniWalletVendor">₹2,450</span>
+          </button>
+          <button type="button" onclick="openWalletModal('customer')" class="px-2.5 py-1.5 rounded-xl bg-white shadow-sm font-bold text-slate-800 flex items-center gap-1 tap-card">
+            🛒 <span id="miniWalletCustomer">₹1,500</span>
+          </button>
+          <button type="button" onclick="openWalletModal('delivery')" class="px-2.5 py-1.5 rounded-xl bg-white shadow-sm font-bold text-slate-800 flex items-center gap-1 tap-card">
+            🛵 <span id="miniWalletDelivery">₹680</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- INTERFACE 1: VENDOR (SHOPKEEPER) VIEW                                 -->
+    <!-- ===================================================================== -->
+    <section id="viewVendor" class="space-y-6">
+      
+      <!-- Top Row: 1) Add Item by Voice (Mother Tongue AI) 2) Add Item by Typing & Picture 3) COD Payout Mode -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        
+        <!-- A. VOICE ADD IN REGIONAL LANGUAGE (MOTHER TONGUE) -->
+        <div class="lg:col-span-5 bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-3xl p-5 shadow-xl border-4 border-amber-400 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="bg-amber-400 text-indigo-950 font-black text-xs px-3 py-1 rounded-full uppercase tracking-wide">
+                🎙️ Way 1: Voice (Mother Tongue)
+              </span>
+              <button type="button" onclick="speakText(getLangText('vendorVoiceHelp'))" class="bg-white/15 hover:bg-white/25 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                🔊 Listen
+              </button>
+            </div>
+            <h3 class="text-xl font-black mb-1" id="vendorVoiceHeading">Speak in Your Language to Add Item</h3>
+            <p class="text-xs text-indigo-200 mb-4" id="vendorVoiceSub">
+              Speak item name &amp; price in Telugu, Hindi, Tamil, or English. AI thinks, picks the right picture, and asks confirmation!
+            </p>
+
+            <!-- Big Mic Button -->
+            <div class="flex flex-col items-center my-3">
+              <button type="button" id="btnVendorVoiceMic" onclick="startVendorVoiceAdd()"
+                class="w-24 h-24 rounded-full bg-gradient-to-b from-rose-500 to-red-600 hover:from-rose-400 hover:to-red-500 text-white flex flex-col items-center justify-center shadow-2xl border-4 border-white tap-card">
+                <span class="text-4xl">🎙️</span>
+                <span class="text-[11px] font-black mt-1 uppercase" id="vendorMicBtnText">TAP &amp; SPEAK</span>
+              </button>
+              <div id="vendorVoiceStatus" class="mt-2 text-xs font-bold text-amber-300 text-center min-h-[20px]">
+                Tap mic or choose a sample mother-tongue voice phrase below:
+              </div>
+            </div>
+
+            <!-- One-Tap Regional Mother-Tongue Voice Simulation Chips (Works even without hardware mic) -->
+            <div class="mt-3">
+              <div class="text-[11px] font-bold text-indigo-200 uppercase mb-2">
+                ⚡ Tap Mother-Tongue Voice Phrase (Instant Demo):
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" onclick="simulateVendorVoicePreset('woodtoys')"
+                  class="bg-white/10 hover:bg-white/20 border border-amber-300/50 rounded-xl p-2 text-left flex items-center gap-2 tap-card">
+                  <span class="text-2xl">🪆</span>
+                  <div class="leading-tight">
+                    <div class="text-xs font-black text-amber-300">"ఏటికొప్పాక బొమ్మలు ₹250"</div>
+                    <div class="text-[10px] text-white/80">Etikoppaka Toys • Set</div>
+                  </div>
+                </button>
+
+                <button type="button" onclick="simulateVendorVoicePreset('terracotta')"
+                  class="bg-white/10 hover:bg-white/20 border border-amber-300/50 rounded-xl p-2 text-left flex items-center gap-2 tap-card">
+                  <span class="text-2xl">🏺</span>
+                  <div class="leading-tight">
+                    <div class="text-xs font-black text-amber-300">"मिट्टी का मटका ₹180"</div>
+                    <div class="text-[10px] text-white/80">Terracotta Pot &amp; Diyas</div>
+                  </div>
+                </button>
+
+                <button type="button" onclick="simulateVendorVoicePreset('craftkit')"
+                  class="bg-white/10 hover:bg-white/20 border border-amber-300/50 rounded-xl p-2 text-left flex items-center gap-2 tap-card">
+                  <span class="text-2xl">🧵</span>
+                  <div class="leading-tight">
+                    <div class="text-xs font-black text-amber-300">"క్రాఫ్ట్ దారాలు పూసలు ₹150"</div>
+                    <div class="text-[10px] text-white/80">Silk Threads &amp; Beads Kit</div>
+                  </div>
+                </button>
+
+                <button type="button" onclick="simulateVendorVoicePreset('kalamkari')"
+                  class="bg-white/10 hover:bg-white/20 border border-amber-300/50 rounded-xl p-2 text-left flex items-center gap-2 tap-card">
+                  <span class="text-2xl">🎨</span>
+                  <div class="leading-tight">
+                    <div class="text-xs font-black text-amber-300">"கலம்காரி துணி ₹420"</div>
+                    <div class="text-[10px] text-white/80">Kalamkari Handloom</div>
+                  </div>
+                </button>
+
+                <button type="button" onclick="simulateVendorVoicePreset('onion')"
+                  class="bg-white/10 hover:bg-white/20 border border-white/25 rounded-xl p-2 text-left flex items-center gap-2 tap-card">
+                  <span class="text-2xl">🧅</span>
+                  <div class="leading-tight">
+                    <div class="text-xs font-black text-amber-300">"ఉల్లిపాయలు ₹35"</div>
+                    <div class="text-[10px] text-white/80">Onions • ₹35/kg</div>
+                  </div>
+                </button>
+
+                <button type="button" onclick="simulateVendorVoicePreset('banana')"
+                  class="bg-white/10 hover:bg-white/20 border border-white/25 rounded-xl p-2 text-left flex items-center gap-2 tap-card">
+                  <span class="text-2xl">🍌</span>
+                  <div class="leading-tight">
+                    <div class="text-xs font-black text-amber-300">"అరటిపండ్లు ₹50"</div>
+                    <div class="text-[10px] text-white/80">Bananas • ₹50/doz</div>
+                  </div>
+                </button>
+
+                <button type="button" onclick="simulateVendorVoicePreset('potato')"
+                  class="bg-white/10 hover:bg-white/20 border border-white/25 rounded-xl p-2 text-left flex items-center gap-2 tap-card">
+                  <span class="text-2xl">🥔</span>
+                  <div class="leading-tight">
+                    <div class="text-xs font-black text-amber-300">"आलू 30 रुपये"</div>
+                    <div class="text-[10px] text-white/80">Potatoes • ₹30/kg</div>
+                  </div>
+                </button>
+
+                <button type="button" onclick="simulateVendorVoicePreset('egg')"
+                  class="bg-white/10 hover:bg-white/20 border border-white/25 rounded-xl p-2 text-left flex items-center gap-2 tap-card">
+                  <span class="text-2xl">🥚</span>
+                  <div class="leading-tight">
+                    <div class="text-xs font-black text-amber-300">"முட்டை ₹72"</div>
+                    <div class="text-[10px] text-white/80">Eggs • ₹72/dozen</div>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- B. ADD ITEM BY TYPING + PICTURE PICKER -->
+        <div class="lg:col-span-4 bg-white rounded-3xl p-5 shadow-md border-2 border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="bg-indigo-100 text-indigo-900 font-black text-xs px-3 py-1 rounded-full uppercase">
+                ⌨️ Way 2: Type &amp; Pick Picture
+              </span>
+              <button type="button" onclick="speakText('Type item name and price, choose picture, and press Add Item.')" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">
+                🔊
+              </button>
+            </div>
+            <h3 class="text-lg font-black text-slate-900 mb-3">Add Item by Typing</h3>
+
+            <div class="space-y-3">
+              <div>
+                <label for="vendorInputName" class="block text-xs font-extrabold text-slate-600 uppercase mb-1">
+                  1. Item Name (Type Any Item — AI Auto-Picks Matching 3D Picture!)
+                </label>
+                <div class="flex items-center gap-2.5">
+                  <input id="vendorInputName" type="text" oninput="updateVendorLivePreview()"
+                    onkeydown="if(event.key==='Enter') submitVendorTypedItem()"
+                    placeholder="e.g. Bangles, Mango, Clay Pot, Soap, Bread, Spices..."
+                    class="flex-1 px-3.5 py-2.5 rounded-xl border-2 border-slate-300 font-bold text-sm focus:border-indigo-600 focus:outline-none" />
+                  <div class="flex items-center gap-2 bg-indigo-50 border-2 border-indigo-200 rounded-xl p-1.5 pr-2.5 shrink-0" title="Auto-matched 3D Item Image">
+                    <img id="vendorLivePreviewImg" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2216%22%20fill%3D%22%23ffedd5%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2265%22%20font-size%3D%2250%22%20text-anchor%3D%22middle%22%3E%F0%9F%8F%BA%3C/text%3E%3C/svg%3E" alt="Preview" class="w-11 h-11 rounded-lg object-cover border border-white shadow-sm" />
+                    <div class="leading-tight">
+                      <div class="text-[9px] font-extrabold uppercase text-indigo-600">Matched Pic</div>
+                      <div id="vendorLivePreviewLabel" class="text-[11px] font-black text-slate-800 max-w-[80px] truncate">Clay Pot</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label for="vendorInputPrice" class="block text-xs font-extrabold text-slate-600 uppercase mb-1">
+                    2. Price (₹)
+                  </label>
+                  <input id="vendorInputPrice" type="number" min="1" value="45"
+                    class="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-300 font-black text-base text-emerald-700 focus:border-indigo-600 focus:outline-none" />
+                </div>
+                <div>
+                  <label for="vendorInputUnit" class="block text-xs font-extrabold text-slate-600 uppercase mb-1">
+                    3. Quantity Unit
+                  </label>
+                  <select id="vendorInputUnit" class="w-full px-3 py-2.5 rounded-xl border-2 border-slate-300 font-bold text-sm bg-white focus:border-indigo-600 focus:outline-none">
+                    <option value="1 Piece">1 Piece (1 పీస్)</option>
+                    <option value="1 Craft Set">1 Craft Set (సెట్)</option>
+                    <option value="1 Meter">1 Meter (మీటర్)</option>
+                    <option value="1 kg">1 kg (కిలో)</option>
+                    <option value="1 Liter">1 Liter (లీటర్)</option>
+                    <option value="1 Dozen">1 Dozen (డజను)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Visual Picture Icon Selector (Artisans, Handcrafts & Groceries) -->
+              <div>
+                <label class="block text-xs font-extrabold text-slate-600 uppercase mb-1">
+                  4. Tap Realistic 3D Picture Category
+                </label>
+                <div id="vendorIconPicker" class="grid grid-cols-5 gap-1.5 bg-slate-50 p-2 rounded-2xl border border-slate-200">
+                  <button type="button" onclick="selectVendorIcon('terracotta')" data-icon="terracotta" title="Terracotta Pottery" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-indigo-600 bg-indigo-50 text-xl flex items-center justify-center">🏺</button>
+                  <button type="button" onclick="selectVendorIcon('woodtoys')" data-icon="woodtoys" title="Wooden Lacquer Toys" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🪆</button>
+                  <button type="button" onclick="selectVendorIcon('bamboo')" data-icon="bamboo" title="Bamboo Cane Basket" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🧺</button>
+                  <button type="button" onclick="selectVendorIcon('kalamkari')" data-icon="kalamkari" title="Handloom Fabric" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🎨</button>
+                  <button type="button" onclick="selectVendorIcon('craftkit')" data-icon="craftkit" title="Handcraft Threads & Beads" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🧵</button>
+                  <button type="button" onclick="selectVendorIcon('brasslamp')" data-icon="brasslamp" title="Brass Deepam Craft" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🪔</button>
+                  <button type="button" onclick="selectVendorIcon('jutebag')" data-icon="jutebag" title="Handmade Jute Bag" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">👜</button>
+                  <button type="button" onclick="selectVendorIcon('woodcarving')" data-icon="woodcarving" title="Carved Wood Figurine" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🐘</button>
+                  <button type="button" onclick="selectVendorIcon('tomato')" data-icon="tomato" title="Fresh Vegetables" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🍅</button>
+                  <button type="button" onclick="selectVendorIcon('milk')" data-icon="milk" title="Dairy & Staples" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🥛</button>
+                  <button type="button" onclick="selectVendorIcon('rice')" data-icon="rice" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🌾</button>
+                  <button type="button" onclick="selectVendorIcon('oil')" data-icon="oil" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🌻</button>
+                  <button type="button" onclick="selectVendorIcon('dal')" data-icon="dal" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🥣</button>
+                  <button type="button" onclick="selectVendorIcon('sugar')" data-icon="sugar" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🍬</button>
+                  <button type="button" onclick="selectVendorIcon('bangles')" data-icon="bangles" title="Bangles & Jewelry" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">📿</button>
+                  <button type="button" onclick="selectVendorIcon('spices')" data-icon="spices" title="Chilli, Turmeric & Spices" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🌶️</button>
+                  <button type="button" onclick="selectVendorIcon('fruits')" data-icon="fruits" title="Mango, Apple & Fruits" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🥭</button>
+                  <button type="button" onclick="selectVendorIcon('bakery')" data-icon="bakery" title="Bread, Biscuits & Tea" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🍞</button>
+                  <button type="button" onclick="selectVendorIcon('soap')" data-icon="soap" title="Herbal Soap & Coconut Oil" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🧼</button>
+                  <button type="button" onclick="selectVendorIcon('honey')" data-icon="honey" title="Forest Honey, Incense & Flowers" class="vendor-icon-btn p-1.5 rounded-xl border-2 border-transparent hover:bg-slate-200 text-xl flex items-center justify-center">🍯</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" onclick="submitVendorTypedItem()"
+            class="mt-4 w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl shadow-lg text-base flex items-center justify-center gap-2 tap-card">
+            <span>➕</span> <span>AI Check &amp; Ask Confirmation</span>
+          </button>
+        </div>
+
+        <!-- C. VENDOR PAYOUT SCHEDULE (DAILY / WEEKLY / MONTHLY FOR COD) + 30% COMPENSATION RULE -->
+        <div class="lg:col-span-3 bg-white rounded-3xl p-5 shadow-md border-2 border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-amber-100 text-amber-900 font-black text-xs px-3 py-1 rounded-full uppercase">
+                💰 Vendor Money Rules
+              </span>
+              <button type="button" onclick="speakText('For Cash on Delivery orders, choose Daily, Weekly, or Monthly payout. Online payments go straight to your wallet immediately! If customer cancels at doorstep or payment fails, you get 30 percent compensation.')"
+                class="text-xs font-bold text-amber-900 bg-amber-50 px-2 py-1 rounded-full">🔊</button>
+            </div>
+            <h3 class="text-base font-black text-slate-900 mb-1">COD Payout Schedule</h3>
+            <p class="text-xs text-slate-500 mb-3">
+              Applies to <strong>Cash-on-Delivery (COD)</strong> only. Online payments credit your wallet instantly!
+            </p>
+
+            <!-- 3 Payout Options: Daily, Weekly, Monthly -->
+            <div class="grid grid-cols-3 gap-1.5 mb-3">
+              <button type="button" id="payoutBtnDaily" onclick="setVendorPayout('Daily')"
+                class="py-2 px-1 rounded-xl border-2 border-emerald-600 bg-emerald-50 text-emerald-950 font-black text-xs flex flex-col items-center tap-card">
+                <span class="text-lg">📅</span>
+                <span>DAILY</span>
+              </button>
+              <button type="button" id="payoutBtnWeekly" onclick="setVendorPayout('Weekly')"
+                class="py-2 px-1 rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-700 font-bold text-xs flex flex-col items-center tap-card">
+                <span class="text-lg">🗓️</span>
+                <span>WEEKLY</span>
+              </button>
+              <button type="button" id="payoutBtnMonthly" onclick="setVendorPayout('Monthly')"
+                class="py-2 px-1 rounded-xl border-2 border-slate-200 bg-slate-50 text-slate-700 font-bold text-xs flex flex-col items-center tap-card">
+                <span class="text-lg">📆</span>
+                <span>MONTHLY</span>
+              </button>
+            </div>
+
+            <div class="bg-slate-50 rounded-2xl p-3 border border-slate-200 space-y-1.5 text-xs">
+              <div class="flex justify-between">
+                <span class="text-slate-600 font-semibold">Pending COD Pool:</span>
+                <span id="vendorPendingCodAmount" class="font-black text-amber-700">₹340</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-600 font-semibold">Selected COD Cycle:</span>
+                <span id="vendorPayoutCycleLabel" class="font-black text-indigo-700">Daily Payout</span>
+              </div>
+              <button type="button" onclick="settleVendorCodPayoutNow()"
+                class="w-full mt-1 py-1.5 bg-amber-400 hover:bg-amber-300 text-indigo-950 font-black rounded-xl text-xs tap-card">
+                ⚡ Settle COD to Wallet Now
+              </button>
+            </div>
+          </div>
+
+          <!-- 30% Protection Badge -->
+          <div class="mt-3 bg-emerald-50 border border-emerald-200 rounded-2xl p-2.5 flex items-center gap-2.5">
+            <span class="text-2xl">🛡️</span>
+            <div class="text-[11px] leading-snug text-emerald-950 font-semibold">
+              <strong>30% Protection Active:</strong> Doorstep cancel or failed payment pays 30% straight to your wallet!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VENDOR SELF-DELIVERY BANNER (Shown when Vendor enables Delivery Partner mode) -->
+      <div id="vendorSelfDeliveryPanel" class="hidden bg-gradient-to-r from-amber-100 via-orange-50 to-emerald-100 rounded-3xl p-4 border-2 border-amber-400 shadow-md">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="text-4xl">🏪🛵</span>
+            <div>
+              <h3 class="text-base sm:text-lg font-black text-slate-900">
+                You Are Also Active as a Delivery Partner!
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-700 font-semibold">
+                You can accept nearby customer deliveries yourself and earn 100% of the delivery commission into your Vendor Wallet.
+              </p>
+            </div>
+          </div>
+          <button type="button" onclick="switchRole('delivery')"
+            class="bg-indigo-900 hover:bg-indigo-800 text-white font-black px-4 py-2.5 rounded-2xl text-xs sm:text-sm shadow tap-card">
+            🛵 Open My Delivery Orders Queue →
+          </button>
+        </div>
+      </div>
+
+      <!-- VENDOR STORE ITEMS GRID (Visual Cards with Giant IN-STOCK / OUT-OF-STOCK Toggle) -->
+      <div class="bg-white rounded-3xl p-5 shadow-md border-2 border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">📦</span>
+            <div>
+              <h3 class="text-lg sm:text-xl font-black text-slate-900">
+                My Store Items (Tap Green/Red Button for IN-STOCK or OUT-OF-STOCK)
+              </h3>
+              <p class="text-xs text-slate-500 font-semibold">
+                Green ✅ = Available for Customers • Red ❌ = Out of Stock
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="vendorStockCounter" class="bg-emerald-100 text-emerald-900 font-black text-xs px-3 py-1.5 rounded-full">
+              8 In Stock
+            </span>
+          </div>
+        </div>
+
+        <!-- Visual Category Filter Buttons -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          <button type="button" onclick="setCategoryFilter('all')" class="cat-filter-btn bg-indigo-900 text-white font-black px-3.5 py-2 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 shadow tap-card" data-cat="all">
+            <span>🌟</span> <span>All Items (అన్నీ • सभी)</span>
+          </button>
+          <button type="button" onclick="setCategoryFilter('artisan')" class="cat-filter-btn bg-amber-100 text-amber-950 font-black px-3.5 py-2 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 border border-amber-300 tap-card" data-cat="artisan">
+            <span>🏺</span> <span>Artisan Handcrafts (చేతివృత్తులు • कारीगर)</span>
+          </button>
+          <button type="button" onclick="setCategoryFilter('materials')" class="cat-filter-btn bg-purple-100 text-purple-950 font-black px-3.5 py-2 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 border border-purple-300 tap-card" data-cat="materials">
+            <span>🧵</span> <span>Handcraft Materials (ముడి సరుకులు • क्राफ्ट सामग्री)</span>
+          </button>
+          <button type="button" onclick="setCategoryFilter('grocery')" class="cat-filter-btn bg-emerald-100 text-emerald-950 font-black px-3.5 py-2 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 border border-emerald-300 tap-card" data-cat="grocery">
+            <span>🍅</span> <span>Groceries &amp; Farm (కూరగాయలు • किराना)</span>
+          </button>
+        </div>
+
+        <div id="vendorItemsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Populated dynamically by renderVendorItems() -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- INTERFACE 2: CUSTOMER VIEW                                            -->
+    <!-- ===================================================================== -->
+    <section id="viewCustomer" class="hidden space-y-6">
+      
+      <!-- 10-MINUTE FORGOTTEN ITEMS COUNTDOWN BANNER (Appears after an order is confirmed!) -->
+      <div id="customerTenMinBanner" class="hidden bg-gradient-to-r from-emerald-900 via-teal-800 to-indigo-900 text-white rounded-3xl p-5 shadow-xl border-4 border-amber-400">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3.5">
+            <div class="w-16 h-16 rounded-2xl bg-amber-400 text-indigo-950 flex flex-col items-center justify-center font-black shadow-lg">
+              <span class="text-xl">⏱️</span>
+              <span id="tenMinTimerDisplay" class="text-sm font-black">10:00</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="bg-emerald-400 text-slate-950 text-xs font-black px-2.5 py-0.5 rounded-full uppercase">
+                  ✅ Order Confirmed!
+                </span>
+                <button type="button" onclick="speakText('Your order is confirmed! You have 10 minutes on the timer to add any forgotten items to this same order without extra delivery charges.')"
+                  class="bg-white/20 px-2.5 py-0.5 rounded-full text-xs font-bold">🔊 Listen</button>
+              </div>
+              <h3 class="text-lg sm:text-xl font-black mt-1">
+                Forgot any item? Add within <span id="tenMinTimerInline" class="text-amber-300 underline">10:00</span> mins!
+              </h3>
+              <div class="mt-1.5 inline-flex flex-wrap items-center gap-2 bg-amber-400 text-indigo-950 px-3 py-1 rounded-xl font-black text-xs shadow">
+                <span>🔐 మీ డెలివరీ OTP (Share with Delivery Partner):</span>
+                <span id="customerBannerOtpCode" class="bg-indigo-950 text-amber-300 px-2.5 py-0.5 rounded-lg tracking-widest text-sm font-black">4829</span>
+                <button type="button" onclick="speakOtpInTelugu()" class="bg-white text-indigo-950 px-2 py-0.5 rounded-lg text-[11px] font-black">🔊 తెలుగులో వినండి</button>
+              </div>
+              <p class="text-xs text-emerald-100 font-semibold">
+                Tap any item card below and click <strong>"➕ Add to Current Order"</strong> before timer ends!
+              </p>
+            </div>
+          </div>
+
+          <!-- Active Order Live Map Tracking, Invoice & Chat Controls -->
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" onclick="openLiveMapModal()"
+              class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black px-4 py-2.5 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 shadow-lg border-2 border-white tap-card">
+              <span class="text-base">🗺️📍</span> <span>Live Map Tracking</span>
+            </button>
+            <button type="button" onclick="openInvoiceModal()"
+              class="bg-white hover:bg-amber-100 text-indigo-950 font-black px-4 py-2.5 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 shadow-lg border-2 border-amber-400 tap-card">
+              <span class="text-base">🧾</span> <span>View &amp; Print Bill (Invoice)</span>
+            </button>
+            <button type="button" onclick="openCustomerChatModal()"
+              class="bg-amber-400 hover:bg-amber-300 text-indigo-950 font-black px-4 py-2.5 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 shadow tap-card">
+              <span>💬📞</span> <span>Chat / Call Delivery (🔊)</span>
+            </button>
+            <button type="button" onclick="triggerDoorstepCancelOrFail('doorstep_cancel')"
+              class="bg-rose-600 hover:bg-rose-500 text-white font-black px-3.5 py-2.5 rounded-2xl text-xs flex items-center gap-1.5 shadow border border-white/30 tap-card"
+              title="Test Spec #4: Cancel at Doorstep pays 30% to Vendor">
+              <span>🚪❌</span> <span>Cancel at Doorstep (30% Rule)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUSTOMER VOICE + VISUAL SEARCH BAR + FLOATING CART SUMMARY -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        
+        <!-- Search & Voice Order Box -->
+        <div class="lg:col-span-8 bg-white rounded-3xl p-5 shadow-md border-2 border-slate-200">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">🎙️🔍</span>
+              <h3 class="text-lg font-black text-slate-900" id="custSearchHeading">
+                Order by Voice or Search Picture
+              </h3>
+            </div>
+            <button type="button" onclick="speakText(getLangText('custVoiceHelp'))"
+              class="bg-indigo-100 text-indigo-900 font-bold text-xs px-3 py-1 rounded-full flex items-center gap-1 tap-card">
+              🔊 Listen
+            </button>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <!-- Search Input -->
+            <div class="relative flex-1">
+              <span class="absolute left-3.5 top-3 text-xl">🔍</span>
+              <input id="customerSearchInput" type="text" oninput="filterCustomerCatalog()"
+                onkeydown="if(event.key==='Enter') addSearchedCustomerItems()"
+                placeholder="Type any item (e.g. Bamboo, Toys, Pot, Milk, Rice, Dal, Bag) &amp; press Enter..."
+                class="w-full pl-11 pr-10 py-3 rounded-2xl border-2 border-slate-300 font-bold text-sm focus:border-indigo-600 focus:outline-none" />
+              <button type="button" onclick="clearCustomerSearch()" class="absolute right-3 top-3 text-slate-400 hover:text-slate-700 font-black text-sm">✕</button>
+            </div>
+
+            <!-- Big Voice Order Button -->
+            <button type="button" id="btnCustomerVoiceMic" onclick="startCustomerVoiceOrder()"
+              class="bg-gradient-to-r from-rose-500 to-orange-500 hover:from-rose-600 hover:to-orange-600 text-white font-black px-5 py-3 rounded-2xl shadow-lg flex items-center justify-center gap-2 border-2 border-white tap-card">
+              <span class="text-2xl">🎙️</span>
+              <div class="text-left leading-tight">
+                <div class="text-xs uppercase font-black">Speak Order</div>
+                <div class="text-[10px] opacity-90">మాట్లాడండి • बोलें</div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Instant Voice Order Demo Phrases -->
+          <div class="mt-3 pt-3 border-t border-slate-100">
+            <div class="text-[11px] font-extrabold text-slate-500 uppercase mb-2">
+              🎙️ Tap a Voice Order Command (AI Adds Items Automatically):
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" onclick="runCustomerVoiceCommand('ఏటికొప్పాక బొమ్మలు మరియు మట్టి కుండ', ['woodtoys', 'terracotta'])"
+                class="bg-amber-50 hover:bg-amber-100 text-amber-950 border border-amber-300 rounded-xl px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 tap-card">
+                <span>🏺</span> <span>"ఏటికొప్పాక బొమ్మలు + మట్టి కుండ (Wooden Toys &amp; Clay Pot)"</span>
+              </button>
+              <button type="button" onclick="runCustomerVoiceCommand('కలంకారీ వస్త్రం మరియు ఎంబ్రాయిడరీ దారాలు', ['kalamkari', 'craftkit'])"
+                class="bg-purple-50 hover:bg-purple-100 text-purple-950 border border-purple-300 rounded-xl px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 tap-card">
+                <span>🧵</span> <span>"కలంకారీ + దారాలు (Kalamkari &amp; Craft Threads Kit)"</span>
+              </button>
+              <button type="button" onclick="runCustomerVoiceCommand('వెదురు బుట్ట మరియు జూట్ బ్యాగ్', ['bamboo', 'jutebag'])"
+                class="bg-emerald-50 hover:bg-emerald-100 text-emerald-950 border border-emerald-300 rounded-xl px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 tap-card">
+                <span>🧺</span> <span>"వెదురు బుట్ట + జూట్ బ్యాగ్ (Bamboo Basket &amp; Jute Bag)"</span>
+              </button>
+              <button type="button" onclick="runCustomerVoiceCommand('1 కిలో టమాటా మరియు 1 లీటర్ పాలు', ['tomato', 'milk'])"
+                class="bg-indigo-50 hover:bg-indigo-100 text-indigo-950 border border-indigo-200 rounded-xl px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 tap-card">
+                <span>🗣️</span> <span>"టమాటా + పాలు (Tomatoes &amp; Milk)"</span>
+              </button>
+              <button type="button" onclick="runCustomerVoiceCommand('1 बैग चावल और सूरजमुखी तेल', ['rice', 'oil'])"
+                class="bg-emerald-50 hover:bg-emerald-100 text-emerald-950 border border-emerald-200 rounded-xl px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 tap-card">
+                <span>🗣️</span> <span>"चावल + तेल (Rice &amp; Cooking Oil)"</span>
+              </button>
+              <button type="button" onclick="runCustomerVoiceCommand('ఉల్లిపాయలు మరియు ఆలుగడ్డ', ['onion', 'potato'])"
+                class="bg-amber-50 hover:bg-amber-100 text-amber-950 border border-amber-200 rounded-xl px-3 py-1.5 text-xs font-bold flex items-center gap-1.5 tap-card">
+                <span>🗣️</span> <span>"ఉల్లిపాయలు + ఆలుగడ్డ (Onion &amp; Potato)"</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customer Basket & Chat / Call Quick Box -->
+        <div class="lg:col-span-4 bg-gradient-to-br from-emerald-900 to-slate-900 text-white rounded-3xl p-5 shadow-xl border-2 border-emerald-400 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-emerald-400 text-slate-950 font-black text-xs px-3 py-1 rounded-full uppercase">
+                🛒 My Basket
+              </span>
+              <div class="flex items-center gap-1.5">
+                <button type="button" onclick="openLiveMapModal()" class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-[11px] px-2.5 py-1 rounded-full flex items-center gap-1 tap-card" title="Live Map GPS Tracking">
+                  🗺️ Live Map
+                </button>
+                <button type="button" onclick="openCustomerChatModal()"
+                  class="bg-amber-400 hover:bg-amber-300 text-indigo-950 font-black text-xs px-3 py-1 rounded-full flex items-center gap-1 tap-card">
+                  💬📞 Delivery Chat (🔊)
+                </button>
+              </div>
+            </div>
+
+            <!-- Customer Active Order OTP Badge (Always easy to find for older people) -->
+            <div class="bg-amber-400/20 border border-amber-300/60 rounded-2xl px-3 py-2 mb-2 flex items-center justify-between">
+              <div class="text-xs">
+                <div class="text-[10px] font-extrabold text-amber-200 uppercase">🔐 Delivery OTP (డెలివరీ ఓటిపి)</div>
+                <div id="customerCardOtpDisplay" class="text-lg font-black tracking-widest text-amber-300">4829</div>
+              </div>
+              <button type="button" onclick="speakOtpInTelugu()"
+                class="bg-amber-400 hover:bg-amber-300 text-indigo-950 font-black px-2.5 py-1.5 rounded-xl text-xs flex items-center gap-1 tap-card">
+                🔊 OTP వినండి
+              </button>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] font-extrabold text-emerald-200 uppercase mb-1">
+              <span>Cart Items (Add + / Remove − / Delete 🗑️):</span>
+              <button type="button" onclick="clearEntireCart()" class="text-rose-300 hover:text-rose-200 underline">🗑️ Clear All</button>
+            </div>
+
+            <div id="customerCartList" class="my-2 max-h-48 overflow-y-auto custom-scroll space-y-2 pr-1">
+              <!-- Populated by renderCustomerCart() -->
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-white/15">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs uppercase font-bold text-emerald-200">Total Bill:</span>
+              <span id="customerCartTotal" class="text-2xl font-black text-amber-300">₹0</span>
+            </div>
+
+            <button type="button" id="btnProceedCheckout" onclick="openOrderConfirmationModal()"
+              class="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400 text-slate-950 font-black rounded-2xl shadow-lg text-base flex items-center justify-center gap-2 border-2 border-white tap-card">
+              <span class="text-xl">✅</span>
+              <span id="btnCheckoutText">PLACE ORDER (OK / NO)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUSTOMER VISUAL PRODUCT GRID (LARGE PICTURES FOR EASY UNDERSTANDING) -->
+      <div class="bg-white rounded-3xl p-5 shadow-md border-2 border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🖼️</span>
+            <h3 class="text-lg sm:text-xl font-black text-slate-900">
+              Tap Picture to Add Item • Tap 🔊 to Hear Price
+            </h3>
+          </div>
+          <span class="text-xs font-bold text-slate-500">Large visual cards designed for everyone</span>
+        </div>
+
+        <!-- Visual Category Filter Buttons -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          <button type="button" onclick="setCategoryFilter('all')" class="cat-filter-btn bg-indigo-900 text-white font-black px-3.5 py-2 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 shadow tap-card" data-cat="all">
+            <span>🌟</span> <span>All Items (అన్నీ • सभी)</span>
+          </button>
+          <button type="button" onclick="setCategoryFilter('artisan')" class="cat-filter-btn bg-amber-100 text-amber-950 font-black px-3.5 py-2 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 border border-amber-300 tap-card" data-cat="artisan">
+            <span>🏺</span> <span>Artisan Handcrafts (చేతివృత్తులు • कारीगर)</span>
+          </button>
+          <button type="button" onclick="setCategoryFilter('materials')" class="cat-filter-btn bg-purple-100 text-purple-950 font-black px-3.5 py-2 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 border border-purple-300 tap-card" data-cat="materials">
+            <span>🧵</span> <span>Handcraft Materials (ముడి సరుకులు • क्राफ्ट सामग्री)</span>
+          </button>
+          <button type="button" onclick="setCategoryFilter('grocery')" class="cat-filter-btn bg-emerald-100 text-emerald-950 font-black px-3.5 py-2 rounded-2xl text-xs sm:text-sm flex items-center gap-1.5 border border-emerald-300 tap-card" data-cat="grocery">
+            <span>🍅</span> <span>Groceries &amp; Farm (కూరగాయలు • किराना)</span>
+          </button>
+        </div>
+
+        <div id="customerCatalogGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Populated dynamically by renderCustomerCatalog() -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- INTERFACE 3: DELIVERY PARTNER VIEW                                    -->
+    <!-- ===================================================================== -->
+    <section id="viewDelivery" class="hidden space-y-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- LEFT: INCOMING ORDER NOTIFICATION CARD (Accept / Decline + Full Visual Details) -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="bg-white rounded-3xl p-5 shadow-lg border-4 border-amber-400">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span class="text-3xl float-badge">🔔</span>
+                <div>
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900">
+                    New Delivery Order Notification
+                  </h3>
+                  <p class="text-xs font-bold text-slate-500">
+                    Tap 🔊 to hear locations, time &amp; your commission
+                  </p>
+                </div>
+              </div>
+              <button type="button" onclick="speakDeliveryNotification()"
+                class="bg-amber-400 hover:bg-amber-300 text-indigo-950 font-black px-3.5 py-2 rounded-2xl text-xs flex items-center gap-1.5 shadow tap-card">
+                <span class="text-base">🔊</span> <span>Listen Order</span>
+              </button>
+            </div>
+
+            <!-- Order Notification Body -->
+            <div id="deliveryOrderCardContainer">
+              <!-- Populated by renderDeliveryView() -->
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: DELIVERY PARTNER EARNINGS + LIVE CHAT WITH CUSTOMER -->
+        <div class="lg:col-span-5 space-y-4">
+          
+          <!-- Delivery Partner Earnings Card -->
+          <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-3xl p-5 shadow-xl border-2 border-indigo-400">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span class="text-3xl">🛵💰</span>
+                <div>
+                  <div class="text-xs uppercase font-bold text-indigo-200">Delivery Partner Wallet</div>
+                  <div id="deliveryViewWalletBalance" class="text-2xl font-black text-amber-300">₹680</div>
+                </div>
+              </div>
+              <button type="button" onclick="openStatementModal()"
+                class="bg-white/15 hover:bg-white/25 text-white font-bold px-3 py-1.5 rounded-xl text-xs">
+                📊 Day Summary
+              </button>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="bg-white/10 rounded-xl p-2.5">
+                <div class="text-indigo-200">Completed Today:</div>
+                <div id="deliveryCompletedCount" class="text-lg font-black text-white">4 Orders</div>
+              </div>
+              <div class="bg-white/10 rounded-xl p-2.5">
+                <div class="text-indigo-200">Commission per Order:</div>
+                <div class="text-lg font-black text-emerald-300">₹35 - ₹50</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delivery Partner Chat & Call Box with Customer -->
+          <div class="bg-white rounded-3xl p-5 shadow-md border-2 border-slate-200">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span class="text-2xl">💬📞</span>
+                <div>
+                  <h4 class="text-base font-black text-slate-900">Customer Chat &amp; Call</h4>
+                  <p class="text-[11px] text-slate-500 font-semibold">Customer can hear your text with 🔊 Listen button</p>
+                </div>
+              </div>
+              <button type="button" onclick="simulatePhoneCall('Customer')"
+                class="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-3 py-1.5 rounded-xl text-xs flex items-center gap-1 tap-card">
+                📞 Call Customer
+              </button>
+            </div>
+
+            <!-- Live Chat Feed Showing Customer Replies to Delivery Partner -->
+            <div class="mb-3">
+              <div class="flex items-center justify-between text-[11px] font-black text-indigo-900 uppercase mb-1.5 bg-indigo-50 px-2.5 py-1 rounded-lg">
+                <span>📥 Live Customer Replies &amp; Chat History:</span>
+                <span class="text-emerald-700">Tap 🔊 to Hear in Telugu</span>
+              </div>
+              <div id="deliveryChatMessagesContainer" class="max-h-52 overflow-y-auto custom-scroll space-y-2 bg-slate-50 p-2.5 rounded-2xl border-2 border-slate-200">
+                <!-- Populated dynamically by renderChatMessages() so Delivery Partner sees Customer replies -->
+              </div>
+            </div>
+
+            <!-- Quick Delivery Partner Messages -->
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              <button type="button" onclick="sendDeliveryMessage('I have picked up your items from the shop and am on the way! 🛵')"
+                class="bg-slate-100 hover:bg-indigo-50 text-slate-800 border border-slate-300 rounded-xl px-2.5 py-1 text-xs font-bold tap-card">
+                🛵 "On the way!"
+              </button>
+              <button type="button" onclick="sendDeliveryMessage('I have reached near your house gate. Please come to collect! 🏠')"
+                class="bg-slate-100 hover:bg-indigo-50 text-slate-800 border border-slate-300 rounded-xl px-2.5 py-1 text-xs font-bold tap-card">
+                🏠 "Reached gate!"
+              </button>
+              <button type="button" onclick="sendDeliveryMessage('Please keep Cash ready or UPI open. Thank you! 🙏')"
+                class="bg-slate-100 hover:bg-indigo-50 text-slate-800 border border-slate-300 rounded-xl px-2.5 py-1 text-xs font-bold tap-card">
+                💵 "Keep cash ready"
+              </button>
+            </div>
+
+            <div class="flex gap-2">
+              <input id="deliveryChatInput" type="text" placeholder="Type message to customer..."
+                class="flex-1 px-3 py-2 rounded-xl border-2 border-slate-300 text-xs font-bold focus:border-indigo-600 focus:outline-none" />
+              <button type="button" onclick="sendDeliveryCustomMessage()"
+                class="bg-indigo-700 hover:bg-indigo-600 text-white font-black px-4 py-2 rounded-xl text-xs tap-card">
+                Send
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  &lt;/main&gt;
+
+  &lt;!-- ======================================================================= --&gt;
+  &lt;!-- MODAL 1: VENDOR AI VOICE / ITEM CONFIRMATION MODAL (OK ✅ / NO ❌)       --&gt;
+  &lt;!-- ======================================================================= --&gt;
+  &lt;div id=&quot;modalVendorConfirm&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
+    &lt;div class=&quot;bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border-4 border-amber-400 text-center space-y-4&quot;&gt;
+      &lt;div class=&quot;inline-flex items-center gap-2 bg-indigo-100 text-indigo-900 font-black text-xs px-3 py-1 rounded-full&quot;&gt;
+        &lt;span&gt;🤖 AI Translated Mother Tongue&lt;/span&gt;
+        &lt;button type=&quot;button&quot; onclick=&quot;speakVendorPendingItem()&quot; class=&quot;bg-indigo-700 text-white px-2 py-0.5 rounded-full&quot;&gt;🔊 Listen&lt;/button&gt;
+      &lt;/div&gt;
+
+      <h3 class="text-xl font-black text-slate-900">
+        Confirm Adding Item to Store?
+      </h3>
+
+      <div id="vendorConfirmPreviewCard" class="bg-slate-50 rounded-2xl p-4 border-2 border-slate-200 flex flex-col items-center">
+        <!-- Populated dynamically with Image, Name, Price Input & Quantity -->
+      </div>
+
+      <!-- GIANT GREEN "OK" AND RED "NO" BUTTONS -->
+      <div class="grid grid-cols-2 gap-4 pt-2">
+        <button type="button" onclick="confirmVendorAddItem(true)"
+          class="py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl shadow-xl text-xl flex flex-col items-center justify-center border-4 border-emerald-300 tap-card">
+          <span class="text-3xl">✅</span>
+          <span>OK (YES)</span>
+          <span class="text-xs font-bold opacity-90">సరే • हाँ</span>
+        </button>
+
+        <button type="button" onclick="confirmVendorAddItem(false)"
+          class="py-4 bg-rose-600 hover:bg-rose-500 text-white font-black rounded-2xl shadow-xl text-xl flex flex-col items-center justify-center border-4 border-rose-300 tap-card">
+          <span class="text-3xl">❌</span>
+          <span>NO (CANCEL)</span>
+          <span class="text-xs font-bold opacity-90">వద్దు • नहीं</span>
+        </button>
+      </div>
+    </div>
+  &lt;/div&gt;
+
+  &lt;!-- ======================================================================= --&gt;
+  &lt;!-- MODAL 1B: INTERACTIVE VOICE / MULTILINGUAL AI INPUT MODAL               --&gt;
+  &lt;!-- ======================================================================= --&gt;
+  &lt;div id=&quot;modalVoicePrompt&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
+    &lt;div class=&quot;bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-rose-500 space-y-4&quot;&gt;
+      &lt;div class=&quot;flex items-center justify-between&quot;&gt;
+        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
+          &lt;span class=&quot;w-10 h-10 rounded-full bg-rose-600 text-white flex items-center justify-center text-xl mic-pulse&quot;&gt;🎙️&lt;/span&gt;
+          &lt;div&gt;
+            &lt;h3 id=&quot;voiceModalTitle&quot; class=&quot;text-lg font-black text-slate-900&quot;&gt;AI Voice Recognition Active&lt;/h3&gt;
+            &lt;p id=&quot;voiceModalSub&quot; class=&quot;text-xs font-bold text-slate-500&quot;&gt;Speak or type what item you want in any language&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button type=&quot;button&quot; onclick=&quot;closeVoicePromptModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
+      &lt;/div&gt;
+
+      <div>
+        <label for="voiceModalInput" class="block text-xs font-extrabold text-slate-600 uppercase mb-1">
+          What did you say / what item do you want? (English, తెలుగు, हिन्दी, தமிழ்):
+        </label>
+        <input id="voiceModalInput" type="text"
+          onkeydown="if(event.key==='Enter') confirmVoicePromptModal()"
+          placeholder="e.g. Bamboo basket, Kalamkari, Milk, Rice, Toys, Clay pot, Dal..."
+          class="w-full px-4 py-3 rounded-2xl border-2 border-indigo-500 font-black text-base text-slate-900 focus:outline-none" />
+      </div>
+
+      <!-- Quick Visual Tap Grid inside Voice Modal so user can also tap any item picture directly -->
+      <div>
+        <div class="text-[11px] font-extrabold text-slate-500 uppercase mb-1.5">
+          Or tap any item below to speak it instantly:
+        </div>
+        <div id="voiceModalQuickGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-1.5 max-h-48 overflow-y-auto custom-scroll p-1">
+          <!-- Populated dynamically with all 18 items -->
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 pt-2">
+        <button type="button" onclick="confirmVoicePromptModal()"
+          class="py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl shadow-lg text-base flex items-center justify-center gap-2 tap-card">
+          <span>✅</span> <span>AI Process Now</span>
+        </button>
+        <button type="button" onclick="closeVoicePromptModal()"
+          class="py-3.5 bg-rose-600 hover:bg-rose-500 text-white font-black rounded-2xl shadow-lg text-base flex items-center justify-center gap-2 tap-card">
+          <span>❌</span> <span>Cancel</span>
+        </button>
+      </div>
+    </div>
+  &lt;/div&gt;
+
+  &lt;!-- ======================================================================= --&gt;
+  &lt;!-- MODAL 2: CUSTOMER ORDER CONFIRMATION (GREEN &quot;OK&quot; / RED &quot;NO&quot; + COD/ONLINE)--&gt;
+  &lt;!-- ======================================================================= --&gt;
+  &lt;div id=&quot;modalCustomerConfirm&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
+    &lt;div class=&quot;bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-emerald-500 space-y-4 max-h-[92vh] overflow-y-auto&quot;&gt;
+      &lt;div class=&quot;flex items-center justify-between&quot;&gt;
+        &lt;span class=&quot;bg-emerald-100 text-emerald-900 font-black text-xs px-3 py-1 rounded-full uppercase&quot;&gt;
+          🛒 Confirm Your Order
+        &lt;/span&gt;
+        &lt;button type=&quot;button&quot; onclick=&quot;speakCustomerOrderSummary()&quot;
+          class=&quot;bg-indigo-100 text-indigo-900 font-black text-xs px-3 py-1.5 rounded-full flex items-center gap-1&quot;&gt;
+          🔊 Listen Bill
+        &lt;/button&gt;
+      &lt;/div&gt;
+
+      <h3 class="text-xl font-black text-slate-900 text-center">
+        Check Pictures &amp; Choose Payment
+      </h3>
+
+      <!-- Visual Items List -->
+      <div id="customerConfirmItemsList" class="space-y-2 max-h-44 overflow-y-auto custom-scroll bg-slate-50 p-3 rounded-2xl border border-slate-200">
+        <!-- Populated dynamically -->
+      </div>
+
+      <!-- Total Amount Display -->
+      <div class="bg-indigo-950 text-white rounded-2xl p-3.5 flex items-center justify-between">
+        <div>
+          <div class="text-xs text-indigo-200 font-bold">Total Amount (Including ₹35 Delivery):</div>
+          <div class="text-[11px] text-amber-300">30% protection rule applies on doorstep cancel</div>
+        </div>
+        <div id="customerConfirmTotalAmount" class="text-2xl font-black text-amber-300">₹0</div>
+      </div>
+
+      <!-- Payment Method Choice: COD vs Online Payment -->
+      <div>
+        <label class="block text-xs font-black text-slate-600 uppercase mb-2 text-center">
+          Tap Payment Method (Cash or Online):
+        </label>
+        <div class="grid grid-cols-2 gap-3">
+          <button type="button" id="payBtnCOD" onclick="selectPaymentMethod('COD')"
+            class="p-3 rounded-2xl border-4 border-emerald-600 bg-emerald-50 text-slate-900 flex flex-col items-center gap-1 tap-card">
+            <span class="text-3xl">💵</span>
+            <span class="font-black text-sm">CASH ON DELIVERY</span>
+            <span class="text-[11px] font-bold text-slate-600">చేతికి డబ్బులు • नकद (COD)</span>
+          </button>
+
+          <button type="button" id="payBtnOnline" onclick="selectPaymentMethod('ONLINE')"
+            class="p-3 rounded-2xl border-4 border-slate-200 bg-white text-slate-900 flex flex-col items-center gap-1 tap-card">
+            <span class="text-3xl">📱</span>
+            <span class="font-black text-sm">ONLINE PAYMENT</span>
+            <span class="text-[11px] font-bold text-slate-600">Instant to Vendor • UPI</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Simulate Failed Online Payment Option (To test Spec #4 directly) -->
+      <div class="flex items-center justify-center">
+        <button type="button" onclick="confirmCustomerOrder(true, true)"
+          class="text-xs font-bold text-rose-700 hover:underline bg-rose-50 px-3 py-1.5 rounded-xl border border-rose-200">
+          ⚠️ Test Failed Payment Scenario (Pays 30% to Vendor)
+        </button>
+      </div>
+
+      <!-- GIANT GREEN BUTTON "OK" AND RED BUTTON "NO" -->
+      <div class="grid grid-cols-2 gap-4 pt-2">
+        <button type="button" onclick="confirmCustomerOrder(true, false)"
+          class="py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl shadow-xl text-2xl flex flex-col items-center justify-center border-4 border-emerald-300 tap-card">
+          <span class="text-3xl">✅</span>
+          <span>OK</span>
+          <span class="text-xs font-bold opacity-90">Confirm Order • సరే</span>
+        </button>
+
+        <button type="button" onclick="confirmCustomerOrder(false, false)"
+          class="py-4 bg-rose-600 hover:bg-rose-500 text-white font-black rounded-2xl shadow-xl text-2xl flex flex-col items-center justify-center border-4 border-rose-300 tap-card">
+          <span class="text-3xl">❌</span>
+          <span>NO</span>
+          <span class="text-xs font-bold opacity-90">Go Back • వద్దు</span>
+        </button>
+      </div>
+    </div>
+  &lt;/div&gt;
+
+  &lt;!-- ======================================================================= --&gt;
+  &lt;!-- MODAL 3: CUSTOMER &lt;-&gt; DELIVERY CHAT &amp; CALL WITH 🔊 LISTEN SPEAKER       --&gt;
+  &lt;!-- ======================================================================= --&gt;
+  &lt;div id=&quot;modalCustomerChat&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
+    &lt;div class=&quot;bg-white rounded-3xl max-w-lg w-full p-5 shadow-2xl border-4 border-indigo-600 flex flex-col max-h-[88vh]&quot;&gt;
+      &lt;div class=&quot;flex items-center justify-between pb-3 border-b border-slate-200&quot;&gt;
+        &lt;div class=&quot;flex items-center gap-2.5&quot;&gt;
+          &lt;span class=&quot;text-3xl&quot;&gt;🛵&lt;/span&gt;
+          &lt;div&gt;
+            &lt;h3 class=&quot;text-lg font-black text-slate-900&quot;&gt;Delivery Partner Chat &amp;amp; Call&lt;/h3&gt;
+            &lt;p class=&quot;text-xs text-emerald-700 font-bold&quot;&gt;Tap 🔊 Listen beside any message to hear it aloud!&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
+          &lt;!-- Translation Language Switcher for Chat Messages --&gt;
+          &lt;div class=&quot;flex items-center bg-slate-100 rounded-xl p-1 border border-slate-300&quot;&gt;
+            &lt;span class=&quot;text-xs px-1&quot; title=&quot;Translate English messages&quot;&gt;🌐&lt;/span&gt;
+            &lt;select id=&quot;chatLangSelect&quot; onchange=&quot;translateAllChatMessages(this.value)&quot; class=&quot;bg-transparent text-slate-900 font-bold text-xs focus:outline-none cursor-pointer&quot;&gt;
+              &lt;option value=&quot;te&quot;&gt;Translate to తెలుగు&lt;/option&gt;
+              &lt;option value=&quot;hi&quot;&gt;Translate to हिन्दी&lt;/option&gt;
+              &lt;option value=&quot;ta&quot;&gt;Translate to தமிழ்&lt;/option&gt;
+              &lt;option value=&quot;en&quot;&gt;Show in English&lt;/option&gt;
+            &lt;/select&gt;
+          &lt;/div&gt;
+          &lt;button type=&quot;button&quot; onclick=&quot;simulatePhoneCall(&#39;Delivery Partner Raju&#39;)&quot;
+            class=&quot;bg-emerald-600 hover:bg-emerald-500 text-white font-black px-3 py-2 rounded-xl text-xs flex items-center gap-1 tap-card&quot;&gt;
+            📞 Call
+          &lt;/button&gt;
+          &lt;button type=&quot;button&quot; onclick=&quot;closeCustomerChatModal()&quot;
+            class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      <!-- Messages List with 🔊 Speaker Icon on Every Message -->
+      <div id="chatMessagesContainer" class="flex-1 overflow-y-auto custom-scroll py-4 space-y-3">
+        <!-- Populated by renderChatMessages() -->
+      </div>
+
+      <!-- Visual Quick Replies for Uneducated Customers -->
+      <div class="pt-2 border-t border-slate-200 space-y-2">
+        <div class="text-[11px] font-bold text-slate-500 uppercase">Tap Picture Reply or Speak:</div>
+        <div class="grid grid-cols-3 gap-1.5">
+          <button type="button" onclick="sendCustomerChatMessage('Please come fast! 🛵💨')"
+            class="bg-slate-100 hover:bg-indigo-50 p-2 rounded-xl text-xs font-bold border border-slate-300 tap-card">
+            🛵 Come Fast
+          </button>
+          <button type="button" onclick="sendCustomerChatMessage('I am waiting at the front gate 🏠')"
+            class="bg-slate-100 hover:bg-indigo-50 p-2 rounded-xl text-xs font-bold border border-slate-300 tap-card">
+            🏠 At Gate
+          </button>
+          <button type="button" onclick="sendCustomerChatMessage('Call me when you arrive 📞')"
+            class="bg-slate-100 hover:bg-indigo-50 p-2 rounded-xl text-xs font-bold border border-slate-300 tap-card">
+            📞 Call Me
+          </button>
+        </div>
+
+        <div class="flex gap-2">
+          <input id="customerChatInput" type="text" placeholder="Type or speak message..."
+            class="flex-1 px-3.5 py-2.5 rounded-xl border-2 border-slate-300 text-sm font-bold focus:border-indigo-600 focus:outline-none" />
+          <button type="button" onclick="sendCustomerTypedChat()"
+            class="bg-indigo-700 hover:bg-indigo-600 text-white font-black px-4 py-2.5 rounded-xl text-sm tap-card">
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+  &lt;/div&gt;
+
+  &lt;!-- ======================================================================= --&gt;
+  &lt;!-- MODAL 4: SEPARATE WALLETS FOR VENDOR, CUSTOMER &amp; DELIVERY PARTNER       --&gt;
+  &lt;!-- ======================================================================= --&gt;
+  &lt;div id=&quot;modalWallets&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
+    &lt;div class=&quot;bg-white rounded-3xl max-w-3xl w-full p-6 shadow-2xl border-4 border-emerald-500 max-h-[90vh] overflow-y-auto space-y-5&quot;&gt;
+      &lt;div class=&quot;flex items-center justify-between border-b border-slate-200 pb-3&quot;&gt;
+        &lt;div class=&quot;flex items-center gap-2.5&quot;&gt;
+          &lt;span class=&quot;text-3xl&quot;&gt;👛&lt;/span&gt;
+          &lt;div&gt;
+            &lt;h3 class=&quot;text-xl font-black text-slate-900&quot;&gt;Vocal Local 3-Role Wallets&lt;/h3&gt;
+            &lt;p class=&quot;text-xs text-slate-500 font-bold&quot;&gt;Separate Wallets for Shopkeeper, Customer &amp;amp; Delivery Partner&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button type=&quot;button&quot; onclick=&quot;closeWalletModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-900 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
+      &lt;/div&gt;
+
+      <!-- 3 Separate Wallet Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Vendor Wallet -->
+        <div class="bg-indigo-50 border-2 border-indigo-300 rounded-2xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-2xl">🏪</span>
+              <button type="button" onclick="speakWalletBalance('vendor')" class="text-xs bg-white px-2 py-1 rounded-full font-bold">🔊 Listen</button>
+            </div>
+            <div class="text-xs font-extrabold uppercase text-indigo-800 mt-2">1. Vendor Wallet</div>
+            <div id="walletCardVendorAmt" class="text-2xl font-black text-indigo-950 my-1">₹2,450</div>
+            <div class="text-[11px] text-indigo-700 font-semibold">
+              • Online payments credit instantly<br/>
+              • COD Payout: <span id="walletModalCodCycle" class="font-black">Daily</span> (<span id="walletModalPendingCod">₹340</span>)<br/>
+              • 30% Cancel/Fail Compensation included
+            </div>
+          </div>
+          <button type="button" onclick="addSampleFunds('vendor', 500)"
+            class="mt-3 w-full py-2 bg-indigo-700 hover:bg-indigo-600 text-white font-black rounded-xl text-xs tap-card">
+            ➕ Add / Withdraw Demo ₹500
+          </button>
+        </div>
+
+        <!-- Customer Wallet -->
+        <div class="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-2xl">🛒</span>
+              <button type="button" onclick="speakWalletBalance('customer')" class="text-xs bg-white px-2 py-1 rounded-full font-bold">🔊 Listen</button>
+            </div>
+            <div class="text-xs font-extrabold uppercase text-emerald-800 mt-2">2. Customer Wallet</div>
+            <div id="walletCardCustomerAmt" class="text-2xl font-black text-emerald-950 my-1">₹1,500</div>
+            <div class="text-[11px] text-emerald-800 font-semibold">
+              • Instant UPI / Wallet Checkout<br/>
+              • Refunds &amp; 30% cancellation fee adjustments tracked automatically
+            </div>
+          </div>
+          <button type="button" onclick="addSampleFunds('customer', 500)"
+            class="mt-3 w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-xs tap-card">
+            ➕ Top Up Wallet ₹500
+          </button>
+        </div>
+
+        <!-- Delivery Partner Wallet -->
+        <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-2xl">🛵</span>
+              <button type="button" onclick="speakWalletBalance('delivery')" class="text-xs bg-white px-2 py-1 rounded-full font-bold">🔊 Listen</button>
+            </div>
+            <div class="text-xs font-extrabold uppercase text-amber-900 mt-2">3. Delivery Wallet</div>
+            <div id="walletCardDeliveryAmt" class="text-2xl font-black text-amber-950 my-1">₹680</div>
+            <div class="text-[11px] text-amber-900 font-semibold">
+              • Instant Commission per delivery<br/>
+              • Distance &amp; time bonus included
+            </div>
+          </div>
+          <button type="button" onclick="addSampleFunds('delivery', 200)"
+            class="mt-3 w-full py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-xl text-xs tap-card">
+            ➕ Bonus Top-Up ₹200
+          </button>
+        </div>
+      </div>
+
+      <!-- Recent Wallet Transactions Log -->
+      <div>
+        <h4 class="text-sm font-black text-slate-800 uppercase mb-2">Recent Wallet Transactions (All 3 Roles)</h4>
+        <div id="walletTransactionsList" class="space-y-2 max-h-52 overflow-y-auto custom-scroll bg-slate-50 p-3 rounded-2xl border border-slate-200">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+  &lt;/div&gt;
+
+  &lt;!-- ======================================================================= --&gt;
+  &lt;!-- MODAL 6: OFFICIAL TAX INVOICE / BILL GENERATOR                          --&gt;
+  &lt;!-- ======================================================================= --&gt;
+  &lt;div id=&quot;modalInvoice&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4&quot;&gt;
+    &lt;div class=&quot;bg-white rounded-3xl max-w-2xl w-full p-5 sm:p-7 shadow-2xl border-4 border-amber-400 max-h-[92vh] overflow-y-auto space-y-4&quot;&gt;
+      &lt;div class=&quot;flex items-center justify-between border-b-2 border-slate-200 pb-3&quot;&gt;
+        &lt;div class=&quot;flex items-center gap-2.5&quot;&gt;
+          &lt;span class=&quot;text-3xl&quot;&gt;🧾&lt;/span&gt;
+          &lt;div&gt;
+            &lt;h3 class=&quot;text-lg sm:text-xl font-black text-slate-900&quot;&gt;Official GST Retail Bill / Invoice&lt;/h3&gt;
+            &lt;p class=&quot;text-xs text-slate-500 font-bold&quot;&gt;Vocal Local Verified • Ready to View, Print &amp;amp; Download&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
+          &lt;button type=&quot;button&quot; onclick=&quot;speakInvoiceSummary()&quot; class=&quot;bg-indigo-100 hover:bg-indigo-200 text-indigo-900 font-black px-3 py-1.5 rounded-xl text-xs flex items-center gap-1 tap-card&quot;&gt;
+            🔊 Listen Bill
+          &lt;/button&gt;
+          &lt;button type=&quot;button&quot; onclick=&quot;closeInvoiceModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      <!-- Printable Invoice Sheet Area -->
+      <div id="invoicePrintArea" class="bg-white rounded-2xl p-4 sm:p-6 border-2 border-slate-300 shadow-sm space-y-4 text-slate-900">
+        <!-- Invoice Header -->
+        <div class="flex flex-wrap items-start justify-between gap-4 border-b-2 border-slate-900 pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">🎙️</span>
+              <span class="text-xl font-black tracking-tight text-indigo-950">VOCAL LOCAL</span>
+              <span class="bg-emerald-100 text-emerald-900 text-[10px] font-black px-2 py-0.5 rounded-full">PAID BILL</span>
+            </div>
+            <div class="text-xs font-black text-slate-700 mt-1">Sri Lakshmi Kirana &amp; Handcraft Store</div>
+            <div class="text-[11px] text-slate-500 font-medium">Madhuravada Main Road, Visakhapatnam, AP - 530048</div>
+            <div class="text-[11px] text-slate-500 font-medium">GSTIN: 37AAACL1234F1Z8 • Phone: +91 94401 88992</div>
+          </div>
+          <div class="text-right">
+            <div class="text-xs uppercase font-extrabold text-slate-400">Tax Invoice No.</div>
+            <div id="invNumber" class="text-base font-black text-indigo-900">INV-2026-8042</div>
+            <div class="text-[11px] text-slate-500 mt-1">Date: <span id="invDate" class="font-bold">Today</span></div>
+            <div class="text-[11px] text-slate-500">Payment: <span id="invPaymentMode" class="font-black text-emerald-700">Online UPI</span></div>
+          </div>
+        </div>
+
+        <!-- Customer & Delivery Partner Security Badges on Bill -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs">
+          <div>
+            <div class="text-[10px] uppercase font-black text-slate-400">Billed To (Customer):</div>
+            <div id="invCustomerName" class="font-black text-slate-900 text-sm">Padma Amma</div>
+            <div id="invCustomerAddress" class="text-slate-600">House #42, Midhilapuri Colony, Madhuravada</div>
+            <div class="text-slate-600">Phone: +91 98492 11002</div>
+          </div>
+          <div>
+            <div class="text-[10px] uppercase font-black text-slate-400">Verified Delivery Partner:</div>
+            <div class="font-black text-slate-900 text-sm">Raju Kumar (రాజు) 🛵</div>
+            <div class="text-slate-600">DL: <span class="font-bold text-slate-800">AP-31-2022-0048921</span> ✅</div>
+            <div class="text-slate-600">Aadhaar/UID: <span class="font-bold text-slate-800">XXXX-XXXX-6819</span> (Verified)</div>
+          </div>
+        </div>
+
+        <!-- Itemized Table on Invoice -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left">
+            <thead class="bg-indigo-950 text-white uppercase text-[10px] font-extrabold">
+              <tr>
+                <th class="p-2.5 rounded-l-lg">#</th>
+                <th class="p-2.5">Item Description</th>
+                <th class="p-2.5 text-center">Unit Price</th>
+                <th class="p-2.5 text-center">Qty</th>
+                <th class="p-2.5 text-right rounded-r-lg">Total (₹)</th>
+              </tr>
+            </thead>
+            <tbody id="invoiceTableBody" class="divide-y divide-slate-200 font-semibold">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Calculations Breakdown on Invoice -->
+        <div class="border-t-2 border-slate-200 pt-3 flex justify-end">
+          <div class="w-full sm:w-64 space-y-1.5 text-xs">
+            <div class="flex justify-between text-slate-600">
+              <span>Items Subtotal:</span>
+              <span id="invSubtotal" class="font-bold text-slate-900">₹0</span>
+            </div>
+            <div class="flex justify-between text-slate-600">
+              <span>Delivery Partner Fee:</span>
+              <span class="font-bold text-slate-900">₹35</span>
+            </div>
+            <div class="flex justify-between text-slate-600">
+              <span>Local GST Tax (5% incl.):</span>
+              <span id="invGst" class="font-bold text-slate-900">₹0</span>
+            </div>
+            <div class="flex justify-between text-base font-black text-indigo-950 border-t-2 border-slate-900 pt-2">
+              <span>Grand Total:</span>
+              <span id="invGrandTotal" class="text-emerald-700">₹0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer / Protection Clause on Invoice -->
+        <div class="text-[10px] text-slate-500 border-t border-slate-200 pt-3 flex flex-wrap items-center justify-between gap-2">
+          <div>
+            🛡️ <strong>30% Protection Terms:</strong> Doorstep cancellation or failed payment applies 30% vendor recovery rule.
+          </div>
+          <div class="font-bold text-indigo-900">
+            Thank you for shopping Vocal Local!
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+        <button type="button" onclick="speakInvoiceSummary()" class="bg-indigo-100 hover:bg-indigo-200 text-indigo-950 font-black px-4 py-2.5 rounded-xl text-xs sm:text-sm flex items-center gap-1.5 tap-card">
+          🔊 Hear Invoice Breakdown
+        </button>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="printInvoiceBill()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-4 py-2.5 rounded-xl text-xs sm:text-sm flex items-center gap-1.5 shadow tap-card">
+            🖨️ Print / Save PDF
+          </button>
+          <button type="button" onclick="downloadInvoiceText()" class="bg-amber-400 hover:bg-amber-300 text-indigo-950 font-black px-4 py-2.5 rounded-xl text-xs sm:text-sm flex items-center gap-1.5 shadow tap-card">
+            📥 Download Text Bill
+          </button>
+        </div>
+      </div>
+    </div>
+  &lt;/div&gt;
+
+  &lt;!-- ======================================================================= --&gt;
+  &lt;!-- MODAL 7: LIVE GPS MAP TRACKING INTERFACE (Customer Access)              --&gt;
+  &lt;!-- ======================================================================= --&gt;
+  &lt;div id=&quot;modalLiveMap&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4&quot;&gt;
+    &lt;div class=&quot;bg-white rounded-3xl max-w-3xl w-full p-5 sm:p-6 shadow-2xl border-4 border-cyan-400 max-h-[92vh] overflow-y-auto space-y-4&quot;&gt;
+      &lt;div class=&quot;flex items-center justify-between border-b-2 border-slate-200 pb-3&quot;&gt;
+        &lt;div class=&quot;flex items-center gap-2.5&quot;&gt;
+          &lt;span class=&quot;text-3xl&quot;&gt;🗺️📍&lt;/span&gt;
+          &lt;div&gt;
+            &lt;h3 class=&quot;text-lg sm:text-xl font-black text-slate-900&quot;&gt;Live GPS Order Map Tracking&lt;/h3&gt;
+            &lt;p class=&quot;text-xs text-slate-500 font-bold&quot;&gt;Real-time driver location, milestones &amp;amp; speed in Madhuravada&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
+          &lt;button type=&quot;button&quot; onclick=&quot;speakMapTrackingStatus()&quot; class=&quot;bg-cyan-100 hover:bg-cyan-200 text-cyan-950 font-black px-3 py-1.5 rounded-xl text-xs flex items-center gap-1 tap-card&quot;&gt;
+            🔊 Listen Status
+          &lt;/button&gt;
+          &lt;button type=&quot;button&quot; onclick=&quot;closeLiveMapModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      <!-- Live Interactive Visual Vector Map Canvas -->
+      <div class="relative bg-slate-900 rounded-3xl p-4 overflow-hidden border-2 border-slate-700 shadow-inner">
+        <!-- SVG Road Map with Animated Delivery Scooter Marker -->
+        <svg id="liveMapSvg" viewBox="0 0 700 320" class="w-full h-56 sm:h-72 rounded-2xl">
+          <!-- Background Grid / Streets in Madhuravada -->
+          <rect width="700" height="320" fill="#0f172a" />
+          <!-- Road Grids -->
+          <line x1="0" y1="90" x2="700" y2="90" stroke="#1e293b" stroke-width="24" />
+          <line x1="0" y1="210" x2="700" y2="210" stroke="#1e293b" stroke-width="24" />
+          <line x1="160" y1="0" x2="160" y2="320" stroke="#1e293b" stroke-width="24" />
+          <line x1="480" y1="0" x2="480" y2="320" stroke="#1e293b" stroke-width="24" />
+          
+          <!-- Delivery Route Highway (Glowing Cyan Track) -->
+          <path id="routePath" d="M 100 240 Q 240 240 320 160 T 600 80" fill="none" stroke="#0891b2" stroke-width="12" stroke-linecap="round" stroke-dasharray="8 6" />
+          <path d="M 100 240 Q 240 240 320 160 T 600 80" fill="none" stroke="#22d3ee" stroke-width="4" stroke-linecap="round" opacity="0.8" />
+
+          <!-- Point 1: Vendor Shop (Sri Lakshmi Kirana) -->
+          <circle cx="100" cy="240" r="18" fill="#4f46e5" stroke="#ffffff" stroke-width="4" />
+          <text x="100" y="247" font-size="16" text-anchor="middle">🏪</text>
+          <text x="100" y="278" font-family="sans-serif" font-size="12" font-weight="bold" fill="#a5b4fc" text-anchor="middle">Kirana Shop</text>
+
+          <!-- Point 2: Customer House (House #42 Midhilapuri) -->
+          <circle cx="600" cy="80" r="18" fill="#10b981" stroke="#ffffff" stroke-width="4" />
+          <text x="600" y="87" font-size="16" text-anchor="middle">🏠</text>
+          <text x="600" y="118" font-family="sans-serif" font-size="12" font-weight="bold" fill="#6ee7b7" text-anchor="middle">Your House</text>
+
+          <!-- Moving Delivery Partner Scooter Marker (Positioned dynamically via JS) -->
+          <g id="driverMapMarker" transform="translate(320, 160)">
+            <circle cx="0" cy="0" r="24" fill="#f59e0b" stroke="#ffffff" stroke-width="4" class="float-badge" />
+            <circle cx="0" cy="0" r="32" fill="none" stroke="#f59e0b" stroke-width="2" class="mic-pulse" opacity="0.6" />
+            <text x="0" y="7" font-size="20" text-anchor="middle">🛵</text>
+            <rect x="-65" y="-45" width="130" height="26" rx="10" fill="#0f172a" stroke="#f59e0b" stroke-width="2" />
+            <text x="0" y="-28" font-family="sans-serif" font-size="11" font-weight="900" fill="#fef08a" text-anchor="middle">Raju (Moving • 28 km/h)</text>
+          </g>
+        </svg>
+
+        <!-- Live Overlay Badge -->
+        <div class="absolute top-7 left-7 bg-slate-900/90 border border-cyan-400 text-white rounded-2xl px-4 py-2 flex items-center gap-3 backdrop-blur shadow-lg">
+          <span class="w-3.5 h-3.5 rounded-full bg-emerald-400 animate-ping"></span>
+          <div>
+            <div class="text-[10px] uppercase font-black text-cyan-300">Live GPS Status</div>
+            <div id="mapStatusText" class="text-xs font-black">🛵 Raju is 1.2 km away • Midhilapuri Arch</div>
+          </div>
+        </div>
+
+        <div class="absolute top-7 right-7 bg-slate-900/90 border border-amber-400 text-amber-300 rounded-2xl px-3.5 py-2 text-right backdrop-blur">
+          <div class="text-[10px] uppercase font-black text-slate-400">Estimated Arrival</div>
+          <div id="mapEtaDisplay" class="text-lg font-black text-amber-300">12 Mins</div>
+        </div>
+      </div>
+
+      <!-- Real-Time Metrics & Milestone Timeline -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="bg-cyan-50 border-2 border-cyan-200 rounded-2xl p-3 text-center">
+          <div class="text-[11px] font-extrabold text-cyan-800 uppercase">Speed &amp; Battery</div>
+          <div class="text-lg font-black text-cyan-950 mt-0.5">28 km/h • 🔋 88%</div>
+        </div>
+        <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-3 text-center">
+          <div class="text-[11px] font-extrabold text-emerald-800 uppercase">Partner Verified DL</div>
+          <div class="text-xs font-black text-emerald-950 mt-1">AP-31-2022-0048921 ✅</div>
+        </div>
+        <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3 text-center">
+          <div class="text-[11px] font-extrabold text-amber-900 uppercase">Direct Contact</div>
+          <button type="button" onclick="simulatePhoneCall('Delivery Partner Raju')" class="text-xs font-black text-amber-950 bg-amber-200 hover:bg-amber-300 px-3 py-1 rounded-xl mt-1 tap-card">
+            📞 Call Raju Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Milestone Progress Bar -->
+      <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+        <div class="text-xs font-black text-slate-700 uppercase">Live Delivery Milestones:</div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+          <div class="bg-emerald-100 border border-emerald-300 rounded-xl p-2 font-bold text-emerald-950 flex items-center gap-1.5">
+            <span>✅</span> <span>1. Shop Pickup</span>
+          </div>
+          <div class="bg-emerald-100 border border-emerald-300 rounded-xl p-2 font-bold text-emerald-950 flex items-center gap-1.5">
+            <span>✅</span> <span>2. Main Road</span>
+          </div>
+          <div class="bg-amber-100 border-2 border-amber-400 rounded-xl p-2 font-black text-amber-950 flex items-center gap-1.5 animate-pulse">
+            <span>🛵</span> <span>3. Colony Arch</span>
+          </div>
+          <div class="bg-slate-200 rounded-xl p-2 font-bold text-slate-500 flex items-center gap-1.5">
+            <span>⏳</span> <span>4. Doorstep</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advance GPS Simulator Buttons for Testing -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+        <button type="button" onclick="advanceLiveMapSimulation()" class="bg-indigo-700 hover:bg-indigo-600 text-white font-black px-4 py-2.5 rounded-xl text-xs sm:text-sm flex items-center gap-1.5 shadow tap-card">
+          ⚡ Simulate Driver Moving Forward 🛵
+        </button>
+        <button type="button" onclick="openCustomerChatModal()" class="bg-amber-400 hover:bg-amber-300 text-indigo-950 font-black px-4 py-2.5 rounded-xl text-xs sm:text-sm flex items-center gap-1.5 shadow tap-card">
+          💬 Send In-App Message to Raju
+        </button>
+      </div>
+    </div>
+  &lt;/div&gt;
+
+  &lt;!-- ======================================================================= --&gt;
+  &lt;!-- MODAL 5: END-OF-DAY SUMMARY / STATEMENTS &amp; DOWNLOAD OPTION              --&gt;
+  &lt;!-- ======================================================================= --&gt;
+  &lt;div id=&quot;modalStatements&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
+    &lt;div class=&quot;bg-white rounded-3xl max-w-3xl w-full p-6 shadow-2xl border-4 border-amber-400 max-h-[90vh] overflow-y-auto space-y-4&quot;&gt;
+      &lt;div class=&quot;flex items-center justify-between border-b border-slate-200 pb-3&quot;&gt;
+        &lt;div class=&quot;flex items-center gap-2.5&quot;&gt;
+          &lt;span class=&quot;text-3xl&quot;&gt;📊&lt;/span&gt;
+          &lt;div&gt;
+            &lt;h3 class=&quot;text-xl font-black text-slate-900&quot;&gt;End-of-Day Summary &amp;amp; Statements&lt;/h3&gt;
+            &lt;p class=&quot;text-xs text-slate-500 font-bold&quot;&gt;Select Vendor, Customer, or Delivery Partner to view &amp;amp; download statement&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button type=&quot;button&quot; onclick=&quot;closeStatementModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-900 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
+      &lt;/div&gt;
+
+      <!-- Filter Tabs for Statement Role -->
+      <div class="grid grid-cols-3 gap-2">
+        <button type="button" id="stmtTabVendor" onclick="renderStatementForRole('vendor')"
+          class="py-2.5 px-3 rounded-xl font-black text-xs sm:text-sm bg-indigo-900 text-white flex items-center justify-center gap-1.5">
+          🏪 Vendor Statement
+        </button>
+        <button type="button" id="stmtTabCustomer" onclick="renderStatementForRole('customer')"
+          class="py-2.5 px-3 rounded-xl font-black text-xs sm:text-sm bg-slate-100 text-slate-800 flex items-center justify-center gap-1.5">
+          🛒 Customer Statement
+        </button>
+        <button type="button" id="stmtTabDelivery" onclick="renderStatementForRole('delivery')"
+          class="py-2.5 px-3 rounded-xl font-black text-xs sm:text-sm bg-slate-100 text-slate-800 flex items-center justify-center gap-1.5">
+          🛵 Delivery Statement
+        </button>
+      </div>
+
+      <!-- Statement Content Box -->
+      <div id="statementSummaryBox" class="bg-slate-50 rounded-2xl p-4 border-2 border-slate-200 space-y-3">
+        <!-- Populated by renderStatementForRole() -->
+      </div>
+
+      <!-- Download Statement Action Buttons -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+        <button type="button" onclick="speakStatementSummary()"
+          class="bg-indigo-100 hover:bg-indigo-200 text-indigo-950 font-black px-4 py-2.5 rounded-2xl text-xs sm:text-sm flex items-center gap-2 tap-card">
+          🔊 Listen to Today's Statement
+        </button>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="downloadDayStatement('csv')"
+            class="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-4 py-2.5 rounded-2xl text-xs sm:text-sm flex items-center gap-2 shadow tap-card">
+            📥 Download CSV Statement
+          </button>
+          <button type="button" onclick="downloadDayStatement('txt')"
+            class="bg-amber-400 hover:bg-amber-300 text-indigo-950 font-black px-4 py-2.5 rounded-2xl text-xs sm:text-sm flex items-center gap-2 shadow tap-card">
+            📄 Download Printable Summary (.TXT)
+          </button>
+        </div>
+      </div>
+    </div>
+  &lt;/div&gt;
+
+  &lt;!-- ======================================================================= --&gt;
+  &lt;!-- FLOATING AI VOICE CHATBOT FOR USER QUERIES (Accessible with 🔊 Listen)  --&gt;
+  &lt;!-- ======================================================================= --&gt;
+  &lt;div class=&quot;fixed bottom-4 right-4 z-40&quot;&gt;
+    &lt;!-- Chatbot Panel --&gt;
+    &lt;div id=&quot;chatbotPanel&quot; class=&quot;hidden mb-3 w-80 sm:w-96 bg-white rounded-3xl shadow-2xl border-4 border-indigo-700 overflow-hidden flex flex-col max-h-[500px]&quot;&gt;
+      &lt;div class=&quot;bg-gradient-to-r from-indigo-900 to-emerald-900 text-white p-3.5 flex items-center justify-between&quot;&gt;
+        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
+          &lt;span class=&quot;text-2xl&quot;&gt;🤖🎙️&lt;/span&gt;
+          &lt;div&gt;
+            &lt;div class=&quot;font-black text-sm&quot;&gt;VOCAL LOCAL AI Helper&lt;/div&gt;
+            &lt;div class=&quot;text-[10px] text-amber-300 font-bold&quot;&gt;Ask anything by Voice or Tap • 🔊 Speaks Replies&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button type=&quot;button&quot; onclick=&quot;toggleChatbot()&quot; class=&quot;bg-white/20 hover:bg-white/30 w-8 h-8 rounded-xl font-black text-sm&quot;&gt;✕&lt;/button&gt;
+      &lt;/div&gt;
+
+      <!-- Chatbot Messages -->
+      <div id="chatbotMessagesList" class="p-3 space-y-2.5 overflow-y-auto custom-scroll flex-1 max-h-64 bg-slate-50">
+        <!-- Populated by renderChatbotMessages() -->
+      </div>
+
+      <!-- Quick FAQ Chips -->
+      <div class="p-2 bg-indigo-50 border-t border-indigo-100 flex flex-wrap gap-1">
+        <button type="button" onclick="askBotQuestion('How does 30% doorstep cancel work?')"
+          class="bg-white hover:bg-indigo-100 text-indigo-950 border border-indigo-200 rounded-lg px-2 py-1 text-[11px] font-bold">
+          🛡️ 30% Cancel Rule?
+        </button>
+        <button type="button" onclick="askBotQuestion('How do Vendor COD payouts work?')"
+          class="bg-white hover:bg-indigo-100 text-indigo-950 border border-indigo-200 rounded-lg px-2 py-1 text-[11px] font-bold">
+          💰 COD Payouts?
+        </button>
+        <button type="button" onclick="askBotQuestion('How can Vendor become Delivery Partner?')"
+          class="bg-white hover:bg-indigo-100 text-indigo-950 border border-indigo-200 rounded-lg px-2 py-1 text-[11px] font-bold">
+          🏪➡️🛵 Self-Delivery?
+        </button>
+        <button type="button" onclick="askBotQuestion('How does the 10 minute order timer work?')"
+          class="bg-white hover:bg-indigo-100 text-indigo-950 border border-indigo-200 rounded-lg px-2 py-1 text-[11px] font-bold">
+          ⏱️ 10-Min Timer?
+        </button>
+      </div>
+
+      <!-- Chatbot Input + Voice Mic -->
+      <div class="p-2.5 bg-white border-t border-slate-200 flex items-center gap-1.5">
+        <button type="button" onclick="startBotVoiceQuestion()" title="Speak to AI Assistant"
+          class="bg-rose-500 hover:bg-rose-600 text-white w-10 h-10 rounded-xl flex items-center justify-center text-lg shadow tap-card">
+          🎙️
+        </button>
+        <input id="chatbotInput" type="text" placeholder="Ask a question..."
+          onkeydown="if(event.key==='Enter') sendBotUserText()"
+          class="flex-1 px-3 py-2 rounded-xl border-2 border-slate-300 text-xs font-bold focus:border-indigo-600 focus:outline-none" />
+        <button type="button" onclick="sendBotUserText()"
+          class="bg-indigo-800 hover:bg-indigo-700 text-white font-black px-3 py-2 rounded-xl text-xs tap-card">
+          Ask
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating Chatbot Toggle Button -->
+    <button type="button" onclick="toggleChatbot()"
+      class="bg-gradient-to-r from-indigo-900 to-emerald-800 hover:from-indigo-800 hover:to-emerald-700 text-white font-black px-4 py-3 rounded-full shadow-2xl border-4 border-amber-400 flex items-center gap-2 tap-card">
+      <span class="text-2xl">🤖🎙️</span>
+      <div class="text-left leading-tight">
+        <div class="text-xs font-black">AI HELP CHATBOT</div>
+        <div class="text-[10px] text-amber-300">Tap &amp; Listen 🔊</div>
+      </div>
+    </button>
+  &lt;/div&gt;
+
+  &lt;!-- ======================================================================= --&gt;
+  &lt;!-- MODAL 8: SWIGGY-STYLE ONE-TIME LOGIN PAGE (Email, Password, Google)     --&gt;
+  &lt;!-- ======================================================================= --&gt;
+  &lt;div id=&quot;modalSwiggyLogin&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4&quot;&gt;
+    &lt;div class=&quot;bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border-4 border-orange-500&quot;&gt;
+      &lt;!-- Swiggy-Style Orange Top Hero Banner --&gt;
+      &lt;div class=&quot;bg-gradient-to-r from-orange-500 via-orange-600 to-amber-500 text-white p-5 relative&quot;&gt;
+        &lt;div class=&quot;flex items-center justify-between&quot;&gt;
+          &lt;div class=&quot;flex items-center gap-3&quot;&gt;
+            &lt;div class=&quot;w-14 h-14 rounded-2xl bg-white text-orange-600 flex items-center justify-center text-3xl font-black shadow-lg&quot;&gt;
+              🎙️
+            &lt;/div&gt;
+            &lt;div&gt;
+              &lt;span class=&quot;bg-indigo-950 text-amber-300 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase&quot;&gt;One-Time Login&lt;/span&gt;
+              &lt;h3 class=&quot;text-2xl font-black tracking-tight mt-0.5&quot;&gt;VOCAL LOCAL&lt;/h3&gt;
+              &lt;p class=&quot;text-xs font-bold text-orange-100&quot;&gt;సులభమైన లాగిన్ • ఒక్కసారి మాత్రమే!&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;button type=&quot;button&quot; onclick=&quot;speakText(&#39;వోకల్ లోకల్ యాప్ కి స్వాగతం! ఇమెయిల్, పాస్‌వర్డ్ లేదా గూగుల్ బటన్ నొక్కి ఒక్కసారి లాగిన్ చేయండి.&#39;)&quot;
+            class=&quot;bg-white text-orange-700 font-black px-3 py-1.5 rounded-xl text-xs flex items-center gap-1 shadow tap-card&quot;&gt;
+            🔊 తెలుగు
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      <!-- Login Form Body -->
+      <div class="p-6 space-y-4">
+        <div>
+          <label for="loginEmailInput" class="block text-xs font-extrabold text-slate-700 uppercase mb-1">
+            📧 Email or Mobile Number (ఇమెయిల్ / ఫోన్ నంబర్)
+          </label>
+          <input id="loginEmailInput" type="email" value="padma.amma@vocallocal.in"
+            placeholder="Enter Email or Phone Number..."
+            class="w-full px-4 py-3 rounded-2xl border-2 border-slate-300 font-bold text-sm text-slate-900 focus:border-orange-500 focus:outline-none" />
+        </div>
+
+        <div>
+          <label for="loginPasswordInput" class="block text-xs font-extrabold text-slate-700 uppercase mb-1">
+            🔑 Password (పాస్‌వర్డ్)
+          </label>
+          <input id="loginPasswordInput" type="password" value="••••••••"
+            placeholder="Enter Password..."
+            class="w-full px-4 py-3 rounded-2xl border-2 border-slate-300 font-bold text-sm text-slate-900 focus:border-orange-500 focus:outline-none" />
+        </div>
+
+        <!-- Swiggy-Orange Primary Login Button -->
+        <button type="button" onclick="completeSwiggyLogin('Email')"
+          class="w-full py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-black rounded-2xl shadow-lg text-base flex items-center justify-center gap-2 tap-card">
+          <span>🚀</span> <span>LOGIN (లాగిన్ చేయండి)</span>
+        </button>
+
+        <div class="flex items-center gap-3 my-1">
+          <div class="h-px bg-slate-200 flex-1"></div>
+          <span class="text-xs font-extrabold text-slate-400 uppercase">OR (లేదా)</span>
+          <div class="h-px bg-slate-200 flex-1"></div>
+        </div>
+
+        <!-- Sign in with Google Button -->
+        <button type="button" onclick="completeSwiggyLogin('Google')"
+          class="w-full py-3.5 bg-white hover:bg-slate-50 text-slate-900 font-black rounded-2xl shadow border-2 border-slate-300 text-sm flex items-center justify-center gap-3 tap-card">
+          <svg class="w-5 h-5" viewBox="0 0 24 24">
+            <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.8C6.2 7.2 8.9 5 12 5z"/>
+            <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.6l3.7 2.9c2.2-2 3.7-5 3.7-8.7z"/>
+            <path fill="#FBBC05" d="M5.3 14.8c-.2-.8-.4-1.6-.4-2.5s.2-1.7.4-2.5L1.6 7C.6 9 0 11.2 0 13.5s.6 4.5 1.6 6.5l3.7-2.9z"/>
+            <path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.1-6.7-5l-3.7 2.8C3.5 21.4 7.4 24 12 24z"/>
+          </svg>
+          <span>Sign in with Google (గూగుల్ తో లాగిన్)</span>
+        </button>
+
+        <p class="text-[11px] text-center text-slate-500 font-semibold">
+          ✅ One-time login saves your session automatically so elders don't have to type again!
+        </p>
+      </div>
+    </div>
+  &lt;/div&gt;
+
+  &lt;!-- ======================================================================= --&gt;
+  &lt;!-- MODAL 9: VENDOR EDIT ITEM MODAL (Fix Price, Name, Unit &amp; Stock Qty)     --&gt;
+  &lt;!-- ======================================================================= --&gt;
+  &lt;div id=&quot;modalVendorEditItem&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
+    &lt;div class=&quot;bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border-4 border-indigo-600 space-y-4&quot;&gt;
+      &lt;div class=&quot;flex items-center justify-between border-b border-slate-200 pb-3&quot;&gt;
+        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
+          &lt;span class=&quot;text-2xl&quot;&gt;✏️&lt;/span&gt;
+          &lt;div&gt;
+            &lt;h3 class=&quot;text-lg font-black text-slate-900&quot;&gt;Edit Store Item &amp;amp; Price&lt;/h3&gt;
+            &lt;p class=&quot;text-xs font-bold text-slate-500&quot;&gt;వస్తువు ధర మరియు వివరాలు మార్చండి&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button type=&quot;button&quot; onclick=&quot;closeVendorEditModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
+      &lt;/div&gt;
+
+      <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-200">
+        <img id="editModalItemImg" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2216%22%20fill%3D%22%23ffedd5%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2265%22%20font-size%3D%2250%22%20text-anchor%3D%22middle%22%3E%F0%9F%8F%BA%3C/text%3E%3C/svg%3E" alt="Item" class="w-16 h-16 rounded-xl object-cover border border-slate-300" />
+        <div class="flex-1">
+          <label for="editModalItemName" class="block text-[10px] font-extrabold text-slate-500 uppercase">Item Name</label>
+          <input id="editModalItemName" type="text" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 font-black text-sm text-slate-900 mt-0.5" />
+        </div>
+      </div>
+
+      <!-- Exact Price Input + Quick Elder-Friendly Stepper Buttons -->
+      <div class="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-3.5 space-y-2">
+        <label for="editModalItemPrice" class="block text-xs font-black text-emerald-950 uppercase">
+          💰 Enter Exact Price (₹ రూపాయలు):
+        </label>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="stepEditModalPrice(-10)" class="px-3 py-2 bg-rose-500 text-white font-black rounded-xl text-xs tap-card">-10</button>
+          <button type="button" onclick="stepEditModalPrice(-1)" class="px-3 py-2 bg-rose-100 text-rose-900 font-black rounded-xl text-xs tap-card">-1</button>
+          <input id="editModalItemPrice" type="number" min="1"
+            class="flex-1 text-center py-2 rounded-xl border-2 border-emerald-600 font-black text-xl text-emerald-800 bg-white focus:outline-none" />
+          <button type="button" onclick="stepEditModalPrice(1)" class="px-3 py-2 bg-emerald-100 text-emerald-900 font-black rounded-xl text-xs tap-card">+1</button>
+          <button type="button" onclick="stepEditModalPrice(10)" class="px-3 py-2 bg-emerald-600 text-white font-black rounded-xl text-xs tap-card">+10</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label for="editModalItemUnit" class="block text-xs font-extrabold text-slate-600 uppercase mb-1">Unit</label>
+          <select id="editModalItemUnit" class="w-full px-3 py-2.5 rounded-xl border-2 border-slate-300 font-bold text-xs bg-white">
+            <option value="1 kg">1 kg (కిలో)</option>
+            <option value="500 g">500 g (అర కిలో)</option>
+            <option value="1 Liter">1 Liter (లీటర్)</option>
+            <option value="1 Piece">1 Piece (1 పీస్)</option>
+            <option value="1 Craft Set">1 Craft Set (సెట్)</option>
+            <option value="1 Dozen">1 Dozen (డజను)</option>
+            <option value="1 Set">1 Set</option>
+            <option value="1 Bag">1 Bag</option>
+          </select>
+        </div>
+        <div>
+          <label for="editModalItemQty" class="block text-xs font-extrabold text-slate-600 uppercase mb-1">Stock Quantity</label>
+          <input id="editModalItemQty" type="number" min="0"
+            class="w-full px-3 py-2 rounded-xl border-2 border-slate-300 font-black text-sm text-slate-900" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 pt-2">
+        <button type="button" onclick="saveVendorEditedItem()"
+          class="py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl shadow-lg text-base flex items-center justify-center gap-2 tap-card">
+          <span>✅</span> <span>SAVE (సేవ్)</span>
+        </button>
+        <button type="button" onclick="closeVendorEditModal()"
+          class="py-3.5 bg-rose-600 hover:bg-rose-500 text-white font-black rounded-2xl shadow-lg text-base flex items-center justify-center gap-2 tap-card">
+          <span>❌</span> <span>CANCEL (రద్దు)</span>
+        </button>
+      </div>
+    </div>
+  &lt;/div&gt;
+
+  &lt;!-- ======================================================================= --&gt;
+  &lt;!-- MODAL 10: DASHBOARD CART MODAL (Add +, Decrease −, or Remove 🗑️ Items)  --&gt;
+  &lt;!-- ======================================================================= --&gt;
+  &lt;div id=&quot;modalDashboardCart&quot; class=&quot;fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4&quot;&gt;
+    &lt;div class=&quot;bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-rose-500 space-y-4 max-h-[90vh] flex flex-col&quot;&gt;
+      &lt;div class=&quot;flex items-center justify-between border-b border-slate-200 pb-3&quot;&gt;
+        &lt;div class=&quot;flex items-center gap-2.5&quot;&gt;
+          &lt;span class=&quot;text-3xl&quot;&gt;🛒&lt;/span&gt;
+          &lt;div&gt;
+            &lt;h3 class=&quot;text-xl font-black text-slate-900&quot;&gt;Dashboard Cart (నా బాస్కెట్)&lt;/h3&gt;
+            &lt;p class=&quot;text-xs font-bold text-slate-500&quot;&gt;Add (+), Reduce (−), or Remove (🗑️) items easily&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;flex items-center gap-2&quot;&gt;
+          &lt;button type=&quot;button&quot; onclick=&quot;speakCustomerOrderSummary()&quot; class=&quot;bg-indigo-100 text-indigo-950 font-black px-3 py-1.5 rounded-xl text-xs&quot;&gt;
+            🔊 తెలుగులో వినండి
+          &lt;/button&gt;
+          &lt;button type=&quot;button&quot; onclick=&quot;closeDashboardCartModal()&quot; class=&quot;bg-slate-200 hover:bg-slate-300 text-slate-800 font-black w-9 h-9 rounded-xl&quot;&gt;✕&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      <div id="dashboardCartModalList" class="flex-1 overflow-y-auto custom-scroll space-y-2.5 py-2">
+        <!-- Populated dynamically by renderCustomerCart() -->
+      </div>
+
+      <div class="border-t border-slate-200 pt-3 space-y-3">
+        <div class="flex items-center justify-between bg-slate-900 text-white p-3.5 rounded-2xl">
+          <div>
+            <div class="text-xs text-slate-300 font-bold">Total Cart Bill (incl. ₹35 Delivery):</div>
+            <div class="text-[11px] text-amber-300">🔐 Delivery OTP: <span id="cartModalOtpCode" class="font-black">4829</span></div>
+          </div>
+          <div id="dashboardCartModalTotal" class="text-2xl font-black text-amber-300">₹0</div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <button type="button" onclick="closeDashboardCartModal(); openOrderConfirmationModal();"
+            class="py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl shadow-lg text-sm sm:text-base flex items-center justify-center gap-2 tap-card">
+            <span>✅</span> <span>PROCEED TO ORDER</span>
+          </button>
+          <button type="button" onclick="clearEntireCart()"
+            class="py-3.5 bg-rose-100 hover:bg-rose-200 text-rose-800 font-black rounded-2xl text-sm flex items-center justify-center gap-2 tap-card">
+            <span>🗑️</span> <span>CLEAR CART</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  &lt;/div&gt;
+
+  &lt;!-- TOAST NOTIFICATION BANNER --&gt;
+  &lt;div id=&quot;toastBanner&quot; class=&quot;fixed top-20 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl border-2 border-amber-400 flex items-center gap-3 max-w-md w-[92%]&quot;&gt;
+    &lt;span id=&quot;toastIcon&quot; class=&quot;text-2xl&quot;&gt;✅&lt;/span&gt;
+    &lt;div id=&quot;toastMessage&quot; class=&quot;text-xs sm:text-sm font-bold flex-1&quot;&gt;Action completed!&lt;/div&gt;
+    &lt;button type=&quot;button&quot; onclick=&quot;hideToast()&quot; class=&quot;text-amber-300 font-black text-sm&quot;&gt;✕&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- ======================================================================= --&gt;
+  &lt;!-- APPLICATION JAVASCRIPT                                                  --&gt;
+  &lt;!-- ======================================================================= --&gt;
+  &lt;script src=&quot;images.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
